@@ -67,6 +67,8 @@ private:
     ScopedPointer<TextButton> resetButton;
     ScopedPointer<TextEditor> tapOutputEditor;
     ScopedPointer<TextEditor> bPMOutputEditor;
+    ScopedPointer<Label> taps;
+    ScopedPointer<Label> bPM;
 
 
     //==============================================================================

@@ -45,20 +45,38 @@ TapWindow::TapWindow ()
     addAndMakeVisible (tapOutputEditor = new TextEditor ("new text editor"));
     tapOutputEditor->setMultiLine (false);
     tapOutputEditor->setReturnKeyStartsNewLine (false);
-    tapOutputEditor->setReadOnly (false);
+    tapOutputEditor->setReadOnly (true);
     tapOutputEditor->setScrollbarsShown (true);
-    tapOutputEditor->setCaretVisible (true);
+    tapOutputEditor->setCaretVisible (false);
     tapOutputEditor->setPopupMenuEnabled (true);
     tapOutputEditor->setText (String());
 
     addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
     bPMOutputEditor->setMultiLine (false);
     bPMOutputEditor->setReturnKeyStartsNewLine (false);
-    bPMOutputEditor->setReadOnly (false);
+    bPMOutputEditor->setReadOnly (true);
     bPMOutputEditor->setScrollbarsShown (true);
-    bPMOutputEditor->setCaretVisible (true);
+    bPMOutputEditor->setCaretVisible (false);
     bPMOutputEditor->setPopupMenuEnabled (true);
     bPMOutputEditor->setText (String());
+
+    addAndMakeVisible (taps = new Label ("taps",
+                                         TRANS("Taps")));
+    taps->setFont (Font (15.00f, Font::plain));
+    taps->setJustificationType (Justification::centredLeft);
+    taps->setEditable (false, false, false);
+    taps->setColour (Label::textColourId, Colours::white);
+    taps->setColour (TextEditor::textColourId, Colours::black);
+    taps->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (bPM = new Label ("bPM",
+                                        TRANS("BPM")));
+    bPM->setFont (Font (15.00f, Font::plain));
+    bPM->setJustificationType (Justification::centredLeft);
+    bPM->setEditable (false, false, false);
+    bPM->setColour (Label::textColourId, Colours::white);
+    bPM->setColour (TextEditor::textColourId, Colours::black);
+    bPM->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
 
     //[UserPreSize]
@@ -69,8 +87,9 @@ TapWindow::TapWindow ()
 
     //[Constructor] You can add your own custom stuff here..
 
-    // set output to tap value - zero at this point
-    tapOutputEditor->setText(timeObject.getStringTapCount());
+    // set to zero for when app opens
+    tapOutputEditor->setText((String) 0);
+    bPMOutputEditor->setText((String) 0);
 
     //[/Constructor]
 }
@@ -84,6 +103,8 @@ TapWindow::~TapWindow()
     resetButton = nullptr;
     tapOutputEditor = nullptr;
     bPMOutputEditor = nullptr;
+    taps = nullptr;
+    bPM = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -109,8 +130,10 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 100, 300, 250);
     resetButton->setBounds (0, 350, 300, 50);
-    tapOutputEditor->setBounds (80, 16, 150, 24);
-    bPMOutputEditor->setBounds (80, 64, 150, 24);
+    tapOutputEditor->setBounds (80, 26, 150, 24);
+    bPMOutputEditor->setBounds (80, 76, 150, 24);
+    taps->setBounds (128, 0, 40, 24);
+    bPM->setBounds (128, 51, 40, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -155,7 +178,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
             // calculate BPM
             bPM = timeObject.getIntTapCount() / minutes;
-            
+
             bPMOutputEditor->setText((String) bPM);
         }
 
@@ -164,16 +187,16 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == resetButton)
     {
         //[UserButtonCode_resetButton] -- add your button handler code here..
-        
+
         // reset all fields
         timeObject.setIntTapCount(0);
         timeObject.setStartingTime(0);
         timeObject.setEndingTime(0);
-        
+
         // set both fields back to 0
         tapOutputEditor->setText((String) 0);
         bPMOutputEditor->setText((String) 0);
-        
+
         //[/UserButtonCode_resetButton]
     }
 
@@ -208,13 +231,23 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 350 300 50" buttonText="Reset"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 16 150 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="80 26 150 24" initialText=""
+              multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
+              caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 64 150 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="80 76 150 24" initialText=""
+              multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
+              caret="0" popupmenu="1"/>
+  <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
+         explicitFocusOrder="0" pos="128 0 40 24" textCol="ffffffff" edTextCol="ff000000"
+         edBkgCol="0" labelText="Taps" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
+         bold="0" italic="0" justification="33"/>
+  <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
+         explicitFocusOrder="0" pos="128 51 40 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="BPM" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
