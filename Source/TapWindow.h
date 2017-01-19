@@ -57,6 +57,8 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
     TimeClass timeObject;
+    const int millisecondsInASecond = 1000;
+    const int secondsInAMinute = 60;
 
     //[/UserVariables]
 
@@ -64,6 +66,7 @@ private:
     ScopedPointer<TextButton> tapButton;
     ScopedPointer<TextButton> resetButton;
     ScopedPointer<TextEditor> tapOutputEditor;
+    ScopedPointer<TextEditor> bPMOutputEditor;
 
 
     //==============================================================================

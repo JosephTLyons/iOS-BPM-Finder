@@ -51,6 +51,15 @@ TapWindow::TapWindow ()
     tapOutputEditor->setPopupMenuEnabled (true);
     tapOutputEditor->setText (String());
 
+    addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
+    bPMOutputEditor->setMultiLine (false);
+    bPMOutputEditor->setReturnKeyStartsNewLine (false);
+    bPMOutputEditor->setReadOnly (false);
+    bPMOutputEditor->setScrollbarsShown (true);
+    bPMOutputEditor->setCaretVisible (true);
+    bPMOutputEditor->setPopupMenuEnabled (true);
+    bPMOutputEditor->setText (String());
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -74,6 +83,7 @@ TapWindow::~TapWindow()
     tapButton = nullptr;
     resetButton = nullptr;
     tapOutputEditor = nullptr;
+    bPMOutputEditor = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -99,7 +109,8 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 100, 300, 250);
     resetButton->setBounds (0, 350, 300, 50);
-    tapOutputEditor->setBounds (80, 40, 150, 24);
+    tapOutputEditor->setBounds (80, 16, 150, 24);
+    bPMOutputEditor->setBounds (80, 64, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -107,22 +118,62 @@ void TapWindow::resized()
 void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+
+    Time juceTimeObject(Time::getCurrentTime());
+    double seconds;
+    double minutes;
+    double bPM;
+
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == tapButton)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
 
+        // start timer - only do this once
+        if(timeObject.getIntTapCount() == 0)
+        {
+            timeObject.setStartingTime(juceTimeObject.toMilliseconds());
+        }
+
         timeObject.incrementTapCount();
 
         // get and display newest tapcount
         tapOutputEditor->setText(timeObject.getStringTapCount());
+
+        // get new current time to calculate new duration, do this everytime
+        if(timeObject.getIntTapCount() > 1)
+        {
+            // get end time
+            timeObject.setEndingTime(juceTimeObject.toMilliseconds());
+
+            // convert elapsed time to seconds
+            seconds = timeObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
+
+            // convert elapsed time to minutes
+            minutes = seconds / secondsInAMinute;
+
+            // calculate BPM
+            bPM = timeObject.getIntTapCount() / minutes;
+            
+            bPMOutputEditor->setText((String) bPM);
+        }
 
         //[/UserButtonCode_tapButton]
     }
     else if (buttonThatWasClicked == resetButton)
     {
         //[UserButtonCode_resetButton] -- add your button handler code here..
+        
+        // reset all fields
+        timeObject.setIntTapCount(0);
+        timeObject.setStartingTime(0);
+        timeObject.setEndingTime(0);
+        
+        // set both fields back to 0
+        tapOutputEditor->setText((String) 0);
+        bPMOutputEditor->setText((String) 0);
+        
         //[/UserButtonCode_resetButton]
     }
 
@@ -157,7 +208,11 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 350 300 50" buttonText="Reset"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 40 150 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="80 16 150 24" initialText=""
+              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
+              caret="1" popupmenu="1"/>
+  <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
+              virtualName="" explicitFocusOrder="0" pos="80 64 150 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
               caret="1" popupmenu="1"/>
 </JUCER_COMPONENT>

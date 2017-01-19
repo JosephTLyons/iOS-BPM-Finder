@@ -13,14 +13,28 @@
 class TimeClass
 {
 private:
-    Time juceTimeOjbect;
     unsigned long int tapCount;
+    int64 startingMillisecondHolder;
+    int64 endingMillisecondHolder;
+    int64 timeElapsed;
     
 public:
     TimeClass();
+    
     void incrementTapCount();
+    
+    unsigned long int getIntTapCount();
+    void setIntTapCount(const unsigned long int &input);
     String getStringTapCount();
-    Time getJuceTimeObject();
+    
+    void setStartingTime(const int64 &input);
+    int64 getStartingTime();
+    
+    void setEndingTime(const int64 &input);
+    int64 getEndingTime();
+    
+    void calculateTimeElapsed();
+    int64 getTotalTimeElapsed();
 };
 
 #endif /* TIme_hpp */

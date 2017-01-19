@@ -17,10 +17,10 @@
 		56A4B5E3AF6A05728D4F6DD3 /* juce_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 040ACB77DBED668277261F29 /* juce_graphics.mm */; };
 		6018A7766E9D802284434B60 /* juce_data_structures.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C4624F599F61C2BB4EBCC53 /* juce_data_structures.mm */; };
 		6766790A9A24F4452A458589 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A34037011560F8BCC17D3C5 /* OpenGLES.framework */; };
+		6A646FD1F260FDFF0AA3B42A /* TapWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28793F078A72E7A83A115855 /* TapWindow.cpp */; };
 		80371F7350884552D4F09C7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F976DD16A1A7D4C892EE557 /* QuartzCore.framework */; };
 		8FFEC930555CB0F5CA9B384F /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3BD18A0F8540FD69E2C2A7 /* Main.cpp */; };
-		992A1F7C1E3051C400180FF5 /* TapWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 992A1F7A1E3051C400180FF5 /* TapWindow.cpp */; };
-		992A1F7F1E30544B00180FF5 /* TimeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 992A1F7D1E30544B00180FF5 /* TimeClass.cpp */; };
+		9931DA731E309BF800954837 /* TimeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9931DA711E309BF800954837 /* TimeClass.cpp */; };
 		A479A9D0104379A72341C781 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B0384D51433CA78D9CC34A /* CoreGraphics.framework */; };
 		D6E5D54103D5807AF9C716C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98732B6642BC5828DD4505C6 /* Foundation.framework */; };
 		E0325BD5369AE0A60F0BA0A4 /* juce_gui_extra.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E217FE536CD9ABAD1DE0E18 /* juce_gui_extra.mm */; };
@@ -149,6 +149,7 @@
 		27AE25D7E913E3E9EFF95823 /* juce_URL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_URL.cpp; path = ../../../../Libraries/JUCE/modules/juce_core/network/juce_URL.cpp; sourceTree = SOURCE_ROOT; };
 		28151B00D1500BE986C92E17 /* juce_StringRef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_StringRef.h; path = ../../../../Libraries/JUCE/modules/juce_core/text/juce_StringRef.h; sourceTree = SOURCE_ROOT; };
 		28422F0FCC4D1F29ABEDF09B /* juce_Atomic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Atomic.h; path = ../../../../Libraries/JUCE/modules/juce_core/memory/juce_Atomic.h; sourceTree = SOURCE_ROOT; };
+		28793F078A72E7A83A115855 /* TapWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TapWindow.cpp; path = ../../Source/TapWindow.cpp; sourceTree = SOURCE_ROOT; };
 		2956C4D86D0B9BE03AFFFFB3 /* inffast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inffast.h; path = ../../../../Libraries/JUCE/modules/juce_core/zip/zlib/inffast.h; sourceTree = SOURCE_ROOT; };
 		29B96876787E250665905103 /* juce_FileInputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_FileInputStream.h; path = ../../../../Libraries/JUCE/modules/juce_core/files/juce_FileInputStream.h; sourceTree = SOURCE_ROOT; };
 		2A9C26C828A17D015C18C889 /* zconf.in.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zconf.in.h; path = ../../../../Libraries/JUCE/modules/juce_core/zip/zlib/zconf.in.h; sourceTree = SOURCE_ROOT; };
@@ -309,6 +310,7 @@
 		5C610CDEF8143E0D5FD3E9FB /* juce_ConcertinaPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ConcertinaPanel.cpp; path = ../../../../Libraries/JUCE/modules/juce_gui_basics/layout/juce_ConcertinaPanel.cpp; sourceTree = SOURCE_ROOT; };
 		5CBB90475489039AF1645344 /* juce_TextLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_TextLayout.h; path = ../../../../Libraries/JUCE/modules/juce_graphics/fonts/juce_TextLayout.h; sourceTree = SOURCE_ROOT; };
 		5D15E413924242D8A4F18633 /* jdmainct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdmainct.c; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/jpglib/jdmainct.c; sourceTree = SOURCE_ROOT; };
+		5DFA6990363823518DAB7A81 /* TapWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TapWindow.h; path = ../../Source/TapWindow.h; sourceTree = SOURCE_ROOT; };
 		5E0E328F1EED584B48A88753 /* juce_Justification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Justification.h; path = ../../../../Libraries/JUCE/modules/juce_graphics/placement/juce_Justification.h; sourceTree = SOURCE_ROOT; };
 		5E576C4CAA599246355E4CA8 /* jcmaster.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcmaster.c; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/jpglib/jcmaster.c; sourceTree = SOURCE_ROOT; };
 		5E6408DA07FBBD2CB07D29CC /* juce_Initialisation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Initialisation.h; path = ../../../../Libraries/JUCE/modules/juce_events/messages/juce_Initialisation.h; sourceTree = SOURCE_ROOT; };
@@ -499,11 +501,9 @@
 		9755F63001D6F2E02A80C20F /* juce_RelativePointPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_RelativePointPath.h; path = ../../../../Libraries/JUCE/modules/juce_gui_basics/positioning/juce_RelativePointPath.h; sourceTree = SOURCE_ROOT; };
 		97A5AB3FBE626CE5E93B52A6 /* pnginfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pnginfo.h; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/pnglib/pnginfo.h; sourceTree = SOURCE_ROOT; };
 		98732B6642BC5828DD4505C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		992A1F7A1E3051C400180FF5 /* TapWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TapWindow.cpp; path = ../../Source/TapWindow.cpp; sourceTree = "<group>"; };
-		992A1F7B1E3051C400180FF5 /* TapWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapWindow.h; path = ../../Source/TapWindow.h; sourceTree = "<group>"; };
-		992A1F7D1E30544B00180FF5 /* TimeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeClass.cpp; path = ../../Source/TimeClass.cpp; sourceTree = "<group>"; };
-		992A1F7E1E30544B00180FF5 /* TimeClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TimeClass.hpp; path = ../../Source/TimeClass.hpp; sourceTree = "<group>"; };
 		992D9310621E410BE9A629BB /* juce_GIFLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_GIFLoader.cpp; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/juce_GIFLoader.cpp; sourceTree = SOURCE_ROOT; };
+		9931DA711E309BF800954837 /* TimeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeClass.cpp; path = ../../Source/TimeClass.cpp; sourceTree = "<group>"; };
+		9931DA721E309BF800954837 /* TimeClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TimeClass.hpp; path = ../../Source/TimeClass.hpp; sourceTree = "<group>"; };
 		9953B9E9114B41452A0C8A91 /* juce_HighResolutionTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_HighResolutionTimer.cpp; path = ../../../../Libraries/JUCE/modules/juce_core/threads/juce_HighResolutionTimer.cpp; sourceTree = SOURCE_ROOT; };
 		9A685E83098AEDD02199078C /* juce_CharPointer_UTF16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_CharPointer_UTF16.h; path = ../../../../Libraries/JUCE/modules/juce_core/text/juce_CharPointer_UTF16.h; sourceTree = SOURCE_ROOT; };
 		9A78DFB2CC6A53F04D1D23D3 /* pngread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngread.c; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/pnglib/pngread.c; sourceTree = SOURCE_ROOT; };
@@ -2062,10 +2062,10 @@
 			isa = PBXGroup;
 			children = (
 				DC3BD18A0F8540FD69E2C2A7 /* Main.cpp */,
-				992A1F7B1E3051C400180FF5 /* TapWindow.h */,
-				992A1F7A1E3051C400180FF5 /* TapWindow.cpp */,
-				992A1F7E1E30544B00180FF5 /* TimeClass.hpp */,
-				992A1F7D1E30544B00180FF5 /* TimeClass.cpp */,
+				5DFA6990363823518DAB7A81 /* TapWindow.h */,
+				28793F078A72E7A83A115855 /* TapWindow.cpp */,
+				9931DA721E309BF800954837 /* TimeClass.hpp */,
+				9931DA711E309BF800954837 /* TimeClass.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -2364,10 +2364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FFEC930555CB0F5CA9B384F /* Main.cpp in Sources */,
+				9931DA731E309BF800954837 /* TimeClass.cpp in Sources */,
+				6A646FD1F260FDFF0AA3B42A /* TapWindow.cpp in Sources */,
 				3AA9363B541512DD67795916 /* juce_core.mm in Sources */,
 				6018A7766E9D802284434B60 /* juce_data_structures.mm in Sources */,
-				992A1F7C1E3051C400180FF5 /* TapWindow.cpp in Sources */,
-				992A1F7F1E30544B00180FF5 /* TimeClass.cpp in Sources */,
 				04D590C733FF768D29FDE661 /* juce_events.mm in Sources */,
 				56A4B5E3AF6A05728D4F6DD3 /* juce_graphics.mm in Sources */,
 				034E582AEDA9F1C4DE9A9D85 /* juce_gui_basics.mm in Sources */,

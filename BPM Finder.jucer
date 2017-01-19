@@ -5,10 +5,9 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="CLNhQs" name="BPM Finder">
     <GROUP id="{A1290AB9-58A7-03D4-B987-E06A131A48F3}" name="Source">
-      <FILE id="qkb8ag" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
-      <FILE id="FdIRep" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="miGSt3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="legHM1" name="TapWindow.h" compile="0" resource="0" file="Source/TapWindow.h"/>
+      <FILE id="DP3Q9A" name="TapWindow.cpp" compile="1" resource="0" file="Source/TapWindow.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
