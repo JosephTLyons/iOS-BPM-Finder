@@ -36,11 +36,13 @@ TapWindow::TapWindow ()
     tapButton->setButtonText (TRANS("Tap"));
     tapButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     tapButton->addListener (this);
+    tapButton->setColour (TextButton::buttonColourId, Colour (0xff79ab93));
 
     addAndMakeVisible (resetButton = new TextButton ("resetButton"));
     resetButton->setButtonText (TRANS("Reset"));
     resetButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     resetButton->addListener (this);
+    resetButton->setColour (TextButton::buttonColourId, Colour (0xffc85454));
 
     addAndMakeVisible (tapOutputEditor = new TextEditor ("new text editor"));
     tapOutputEditor->setMultiLine (false);
@@ -225,11 +227,11 @@ BEGIN_JUCER_METADATA
                  fixedSize="1" initialWidth="300" initialHeight="400">
   <BACKGROUND backgroundColour="ff4e4242"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
-              virtualName="" explicitFocusOrder="0" pos="0 100 300 250" buttonText="Tap"
-              connectedEdges="3" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="0 100 300 250" bgColOff="ff79ab93"
+              buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="0 350 300 50" buttonText="Reset"
-              connectedEdges="3" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="0 350 300 50" bgColOff="ffc85454"
+              buttonText="Reset" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
               virtualName="" explicitFocusOrder="0" pos="80 26 150 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
