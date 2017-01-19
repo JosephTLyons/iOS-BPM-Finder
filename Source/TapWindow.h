@@ -21,6 +21,7 @@
 #define __JUCE_HEADER_F309236315CAB33E__
 
 //[Headers]     -- You can add your own extra header files here --
+#include "TimeClass.hpp"
 #include "../JuceLibraryCode/JuceHeader.h"
 //[/Headers]
 
@@ -34,7 +35,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class TapWindow  : public Component
+class TapWindow  : public Component,
+                   public ButtonListener
 {
 public:
     //==============================================================================
@@ -47,14 +49,21 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+
+    TimeClass timeObject;
+
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<TextButton> tapButton;
+    ScopedPointer<TextButton> resetButton;
+    ScopedPointer<TextEditor> tapOutputEditor;
 
 
     //==============================================================================
