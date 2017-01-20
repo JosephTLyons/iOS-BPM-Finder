@@ -146,8 +146,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
 
     Time juceTimeObject(Time::getCurrentTime());
-    static double timeElapsedTotal;
-    static double timeElaspedAverage;
     double seconds;
     double minutes;
     double bPM;
