@@ -67,6 +67,7 @@ public:
         {
             setUsingNativeTitleBar (true);
             setContentOwned (new TapWindow(), true);
+            //setFullScreen(true);
 
             centreWithSize (getWidth(), getHeight());
             setVisible (true);

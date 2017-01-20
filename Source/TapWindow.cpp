@@ -135,7 +135,7 @@ void TapWindow::resized()
     resetButton->setBounds (0, 350, 300, 50);
     tapOutputEditor->setBounds (80, 26, 150, 24);
     bPMOutputEditor->setBounds (80, 76, 150, 24);
-    taps->setBounds (130, 0, 40, 24);
+    taps->setBounds (130, 1, 40, 24);
     bPM->setBounds (130, 52, 40, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
@@ -245,7 +245,7 @@ BEGIN_JUCER_METADATA
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="130 0 40 24" textCol="ffffffff" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="130 1 40 24" textCol="ffffffff" edTextCol="ff000000"
          edBkgCol="0" labelText="Taps" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
