@@ -71,6 +71,8 @@ private:
     ScopedPointer<Label> bPM;
     ScopedPointer<Label> BPMFinder;
     ScopedPointer<Label> JosephLyons;
+    ScopedPointer<ToggleButton> toggleButton;
+    ScopedPointer<ToggleButton> preciseModeToggle;
 
 
     //==============================================================================

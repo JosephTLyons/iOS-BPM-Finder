@@ -101,6 +101,14 @@ TapWindow::TapWindow ()
     JosephLyons->setColour (TextEditor::textColourId, Colours::black);
     JosephLyons->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    addAndMakeVisible (toggleButton = new ToggleButton ("new toggle button"));
+    toggleButton->addListener (this);
+
+    addAndMakeVisible (preciseModeToggle = new ToggleButton ("preciseModeToggle"));
+    preciseModeToggle->setButtonText (TRANS("Precise"));
+    preciseModeToggle->addListener (this);
+    preciseModeToggle->setColour (ToggleButton::textColourId, Colours::white);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -109,6 +117,9 @@ TapWindow::TapWindow ()
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    // Precision mode is off automatically
+    preciseModeToggle->setToggleState(false, dontSendNotification);
 
     // set to zero for when app opens
     tapOutputEditor->setText((String) 0);
@@ -130,6 +141,8 @@ TapWindow::~TapWindow()
     bPM = nullptr;
     BPMFinder = nullptr;
     JosephLyons = nullptr;
+    toggleButton = nullptr;
+    preciseModeToggle = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -155,12 +168,14 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (80, 148, 150, 24);
+    tapOutputEditor->setBounds (80, 156, 150, 24);
     bPMOutputEditor->setBounds (80, 228, 150, 24);
-    taps->setBounds (130, 108, 40, 24);
-    bPM->setBounds (130, 188, 40, 24);
+    taps->setBounds (130, 120, 40, 24);
+    bPM->setBounds (130, 192, 40, 24);
     BPMFinder->setBounds (0, 0, 320, 56);
-    JosephLyons->setBounds (0, 39, 320, 56);
+    JosephLyons->setBounds (0, 49, 320, 32);
+    toggleButton->setBounds (408, 64, 150, 24);
+    preciseModeToggle->setBounds (5, 228, 67, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -183,7 +198,9 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     Time juceTimeObject(Time::getCurrentTime());
     double seconds;
     double minutes;
-    double bPM;
+    double bpmPrecise;
+    double roundingFactor;
+    int bpmRounded;
 
     //[/UserbuttonClicked_Pre]
 
@@ -216,9 +233,27 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
             // calculate BPM - subtract 1 from bpm count because intervals are always 1
             // less than the BPM count
-            bPM = (timeObject.getIntTapCount() - 1) / minutes;
+            bpmPrecise = (timeObject.getIntTapCount() - 1) / minutes;
+            bpmRounded = bpmPrecise;
+            
+            // Get just decimal value and use that to decide if we round or not
+            roundingFactor = bpmPrecise - bpmRounded;
+            
+            if(roundingFactor >= 0.5)
+            {
+                bpmRounded++;
+            }
 
-            bPMOutputEditor->setText((String) bPM);
+            // Display either decimals or integer only
+            if(preciseModeToggle->getToggleState())
+            {
+                bPMOutputEditor->setText((String) bpmPrecise);
+            }
+            
+            else
+            {
+                bPMOutputEditor->setText((String) bpmRounded);
+            }
         }
 
         //[/UserButtonCode_tapButton]
@@ -237,6 +272,16 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         bPMOutputEditor->setText((String) 0);
 
         //[/UserButtonCode_resetButton]
+    }
+    else if (buttonThatWasClicked == toggleButton)
+    {
+        //[UserButtonCode_toggleButton] -- add your button handler code here..
+        //[/UserButtonCode_toggleButton]
+    }
+    else if (buttonThatWasClicked == preciseModeToggle)
+    {
+        //[UserButtonCode_preciseModeToggle] -- add your button handler code here..
+        //[/UserButtonCode_preciseModeToggle]
     }
 
     //[UserbuttonClicked_Post]
@@ -270,7 +315,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="ffc85454"
               buttonText="Reset" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 148 150 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="80 156 150 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
@@ -278,12 +323,12 @@ BEGIN_JUCER_METADATA
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="130 108 40 24" textCol="ffffffff"
+         explicitFocusOrder="0" pos="130 120 40 24" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Taps" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" bold="0" italic="0" justification="33"/>
   <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="130 188 40 24" textCol="ffffffff"
+         explicitFocusOrder="0" pos="130 192 40 24" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" bold="0" italic="0" justification="33"/>
@@ -294,11 +339,18 @@ BEGIN_JUCER_METADATA
          fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
          italic="0" justification="36"/>
   <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="JosephLyons"
-         virtualName="" explicitFocusOrder="0" pos="0 39 320 56" bkgCol="ffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 49 320 32" bkgCol="ffffff"
          textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Baskerville" fontsize="28.399999999999998579" bold="0"
          italic="0" justification="36"/>
+  <TOGGLEBUTTON name="new toggle button" id="c4c1208922bc5862" memberName="toggleButton"
+                virtualName="" explicitFocusOrder="0" pos="408 64 150 24" buttonText="new toggle button"
+                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
+  <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
+                virtualName="" explicitFocusOrder="0" pos="5 228 67 24" txtcol="ffffffff"
+                buttonText="Precise" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
