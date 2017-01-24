@@ -69,6 +69,8 @@ private:
     ScopedPointer<TextEditor> bPMOutputEditor;
     ScopedPointer<Label> taps;
     ScopedPointer<Label> bPM;
+    ScopedPointer<Label> BPMFinder;
+    ScopedPointer<Label> JosephLyons;
 
 
     //==============================================================================

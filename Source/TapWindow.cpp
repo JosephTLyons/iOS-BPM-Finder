@@ -81,11 +81,31 @@ TapWindow::TapWindow ()
     bPM->setColour (TextEditor::textColourId, Colours::black);
     bPM->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    addAndMakeVisible (BPMFinder = new Label ("BPM Finder",
+                                              TRANS("BPM Finder")));
+    BPMFinder->setFont (Font ("Baskerville", 65.90f, Font::plain));
+    BPMFinder->setJustificationType (Justification::centred);
+    BPMFinder->setEditable (false, false, false);
+    BPMFinder->setColour (Label::backgroundColourId, Colour (0x00ffffff));
+    BPMFinder->setColour (Label::textColourId, Colours::white);
+    BPMFinder->setColour (TextEditor::textColourId, Colours::black);
+    BPMFinder->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (JosephLyons = new Label ("Joseph Lyons",
+                                                TRANS("Joseph Lyons")));
+    JosephLyons->setFont (Font ("Baskerville", 28.40f, Font::plain));
+    JosephLyons->setJustificationType (Justification::centred);
+    JosephLyons->setEditable (false, false, false);
+    JosephLyons->setColour (Label::backgroundColourId, Colour (0x00ffffff));
+    JosephLyons->setColour (Label::textColourId, Colours::white);
+    JosephLyons->setColour (TextEditor::textColourId, Colours::black);
+    JosephLyons->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (300, 400);
+    setSize (320, 568);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -108,6 +128,8 @@ TapWindow::~TapWindow()
     bPMOutputEditor = nullptr;
     taps = nullptr;
     bPM = nullptr;
+    BPMFinder = nullptr;
+    JosephLyons = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -131,12 +153,14 @@ void TapWindow::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    tapButton->setBounds (0, 100, 300, 250);
-    resetButton->setBounds (0, 350, 300, 50);
-    tapOutputEditor->setBounds (80, 26, 150, 24);
-    bPMOutputEditor->setBounds (80, 76, 150, 24);
-    taps->setBounds (130, 1, 40, 24);
-    bPM->setBounds (130, 52, 40, 24);
+    tapButton->setBounds (0, 268, 320, 250);
+    resetButton->setBounds (0, 518, 320, 50);
+    tapOutputEditor->setBounds (80, 148, 150, 24);
+    bPMOutputEditor->setBounds (80, 228, 150, 24);
+    taps->setBounds (130, 108, 40, 24);
+    bPM->setBounds (130, 188, 40, 24);
+    BPMFinder->setBounds (0, 0, 320, 56);
+    JosephLyons->setBounds (0, 39, 320, 56);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -144,6 +168,17 @@ void TapWindow::resized()
 void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+
+    // Was used to print out dimensions of iphone screen
+
+//    #include <iostream>
+//    using namespace std;
+//
+//    int width = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
+//    int height = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
+//
+//    cout << width << " ";
+//    cout << height;
 
     Time juceTimeObject(Time::getCurrentTime());
     double seconds;
@@ -226,32 +261,44 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="TapWindow" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="300" initialHeight="400">
+                 fixedSize="1" initialWidth="320" initialHeight="568">
   <BACKGROUND backgroundColour="ff4e4242"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
-              virtualName="" explicitFocusOrder="0" pos="0 100 300 250" bgColOff="ff79ab93"
+              virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff79ab93"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="0 350 300 50" bgColOff="ffc85454"
+              virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="ffc85454"
               buttonText="Reset" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 26 150 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="80 148 150 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 76 150 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="80 228 150 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="130 1 40 24" textCol="ffffffff" edTextCol="ff000000"
-         edBkgCol="0" labelText="Taps" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="130 108 40 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Taps" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" bold="0" italic="0" justification="33"/>
   <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="130 52 40 24" textCol="ffffffff"
+         explicitFocusOrder="0" pos="130 188 40 24" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" bold="0" italic="0" justification="33"/>
+  <LABEL name="BPM Finder" id="2556d6d714a02054" memberName="BPMFinder"
+         virtualName="" explicitFocusOrder="0" pos="0 0 320 56" bkgCol="ffffff"
+         textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="BPM Finder"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
+         italic="0" justification="36"/>
+  <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="JosephLyons"
+         virtualName="" explicitFocusOrder="0" pos="0 39 320 56" bkgCol="ffffff"
+         textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Baskerville" fontsize="28.399999999999998579" bold="0"
+         italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
