@@ -104,6 +104,10 @@
 		<data>
 		MIZ4UscCNga5dtwXaMCCxFh0d0E=
 		</data>
+		<key>BPM Finder Notes.rtf</key>
+		<data>
+		CEl3OPkUktZ0QO6qPObkBXPB5Xc=
+		</data>
 		<key>Info.plist</key>
 		<data>
 		jk5AlBnybv4EKb9K9dY+tJLbBmg=
@@ -416,6 +420,17 @@
 			<key>hash2</key>
 			<data>
 			zf5+7hhoVNc3SNXk8u5KiCxEFGd5RVvakwnaEPFIVSU=
+			</data>
+		</dict>
+		<key>BPM Finder Notes.rtf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CEl3OPkUktZ0QO6qPObkBXPB5Xc=
+			</data>
+			<key>hash2</key>
+			<data>
+			qzoB9hn7Lr1AUOgIULTreUBbHq69Dx4S7zv0Kxd06tw=
 			</data>
 		</dict>
 		<key>LaunchImage-700-568h@2x.png</key>

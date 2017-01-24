@@ -235,10 +235,10 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             // less than the BPM count
             bpmPrecise = (timeObject.getIntTapCount() - 1) / minutes;
             bpmRounded = bpmPrecise;
-            
+
             // Get just decimal value and use that to decide if we round or not
             roundingFactor = bpmPrecise - bpmRounded;
-            
+
             if(roundingFactor >= 0.5)
             {
                 bpmRounded++;
@@ -249,7 +249,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             {
                 bPMOutputEditor->setText((String) bpmPrecise);
             }
-            
+
             else
             {
                 bPMOutputEditor->setText((String) bpmRounded);
