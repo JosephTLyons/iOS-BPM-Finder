@@ -288,17 +288,18 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
 int TapWindow::roundFloat(const float &floatNumber)
 {
-    int bpmRounded = floatNumber;
+    // Truncate
+    int roundedNumber = floatNumber;
     
     // Get just decimal value and use that to decide if we round or not
-    float roundingFactor = floatNumber - bpmRounded;
+    float roundingFactor = floatNumber - roundedNumber;
     
     if(roundingFactor >= 0.5)
     {
-        bpmRounded++;
+        roundedNumber++;
     }
     
-    return bpmRounded;
+    return roundedNumber;
 }
 
 //[/MiscUserCode]
