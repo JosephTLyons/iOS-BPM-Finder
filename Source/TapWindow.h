@@ -73,6 +73,7 @@ private:
     ScopedPointer<Label> JosephLyons;
     ScopedPointer<ToggleButton> toggleButton;
     ScopedPointer<ToggleButton> preciseModeToggle;
+    ScopedPointer<ToggleButton> beepToggle;
 
 
     //==============================================================================

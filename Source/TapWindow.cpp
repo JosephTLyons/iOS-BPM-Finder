@@ -18,7 +18,6 @@
 */
 
 //[Headers] You can add your own extra header files here...
-#include "TapWindow.h"
 //[/Headers]
 
 #include "TapWindow.h"
@@ -109,6 +108,11 @@ TapWindow::TapWindow ()
     preciseModeToggle->addListener (this);
     preciseModeToggle->setColour (ToggleButton::textColourId, Colours::white);
 
+    addAndMakeVisible (beepToggle = new ToggleButton ("beepToggle"));
+    beepToggle->setButtonText (TRANS("Beep"));
+    beepToggle->addListener (this);
+    beepToggle->setColour (ToggleButton::textColourId, Colours::white);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -118,10 +122,11 @@ TapWindow::TapWindow ()
 
     //[Constructor] You can add your own custom stuff here..
 
-    // Precision mode is off automatically
+    // Precision mode and beep mode is off automatically
     preciseModeToggle->setToggleState(false, dontSendNotification);
+    beepToggle->setToggleState(false, dontSendNotification);
 
-    // set to zero for when app opens
+    // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
 
@@ -143,6 +148,7 @@ TapWindow::~TapWindow()
     JosephLyons = nullptr;
     toggleButton = nullptr;
     preciseModeToggle = nullptr;
+    beepToggle = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -175,7 +181,8 @@ void TapWindow::resized()
     BPMFinder->setBounds (0, 0, 320, 56);
     JosephLyons->setBounds (0, 49, 320, 32);
     toggleButton->setBounds (408, 64, 150, 24);
-    preciseModeToggle->setBounds (5, 228, 67, 24);
+    preciseModeToggle->setBounds (6, 228, 67, 24);
+    beepToggle->setBounds (249, 228, 67, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -283,6 +290,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_preciseModeToggle] -- add your button handler code here..
         //[/UserButtonCode_preciseModeToggle]
     }
+    else if (buttonThatWasClicked == beepToggle)
+    {
+        //[UserButtonCode_beepToggle] -- add your button handler code here..
+        //[/UserButtonCode_beepToggle]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -348,8 +360,12 @@ BEGIN_JUCER_METADATA
                 virtualName="" explicitFocusOrder="0" pos="408 64 150 24" buttonText="new toggle button"
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="5 228 67 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="6 228 67 24" txtcol="ffffffff"
                 buttonText="Precise" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
+  <TOGGLEBUTTON name="beepToggle" id="3297335df774edc0" memberName="beepToggle"
+                virtualName="" explicitFocusOrder="0" pos="249 228 67 24" txtcol="ffffffff"
+                buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
 </JUCER_COMPONENT>
 
