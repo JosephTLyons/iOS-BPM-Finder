@@ -201,7 +201,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     double seconds;
     double minutes;
     double bpmPrecise;
-    double roundingFactor;
     int bpmRounded;
 
     //[/UserbuttonClicked_Pre]
@@ -236,15 +235,8 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             // calculate BPM - subtract 1 from bpm count because intervals are always 1
             // less than the BPM count
             bpmPrecise = (timeObject.getIntTapCount() - 1) / minutes;
-            bpmRounded = bpmPrecise;
 
-            // Get just decimal value and use that to decide if we round or not
-            roundingFactor = bpmPrecise - bpmRounded;
-
-            if(roundingFactor >= 0.5)
-            {
-                bpmRounded++;
-            }
+            bpmRounded = roundFloat(bpmPrecise);
 
             // Display either decimals or integer only
             if(preciseModeToggle->getToggleState())
@@ -293,6 +285,22 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+int TapWindow::roundFloat(const float &floatNumber)
+{
+    int bpmRounded = floatNumber;
+    
+    // Get just decimal value and use that to decide if we round or not
+    float roundingFactor = floatNumber - bpmRounded;
+    
+    if(roundingFactor >= 0.5)
+    {
+        bpmRounded++;
+    }
+    
+    return bpmRounded;
+}
+
 //[/MiscUserCode]
 
 
