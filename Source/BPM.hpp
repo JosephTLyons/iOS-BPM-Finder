@@ -1,5 +1,5 @@
 //
-//  TIme.hpp
+//  BPM.hpp
 //  BPM Finder
 //
 //  Created by Joseph Lyons on 1/18/17.

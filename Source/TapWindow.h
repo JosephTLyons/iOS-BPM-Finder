@@ -45,9 +45,6 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    
-    int roundFloat(const float &floatNumber);
-    
     //[/UserMethods]
 
     void paint (Graphics& g) override;
