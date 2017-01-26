@@ -210,31 +210,31 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_tapButton] -- add your button handler code here..
 
         // start timer - only do this once
-        if(timeObject.getIntTapCount() == 0)
+        if(bpmObject.getIntTapCount() == 0)
         {
-            timeObject.setStartingTime(juceTimeObject.toMilliseconds());
+            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
         }
 
-        timeObject.incrementTapCount();
+        bpmObject.incrementTapCount();
 
         // get and display newest tapcount
-        tapOutputEditor->setText(timeObject.getStringTapCount());
+        tapOutputEditor->setText(bpmObject.getStringTapCount());
 
         // get new current time to calculate new duration, do this everytime
-        if(timeObject.getIntTapCount() > 1)
+        if(bpmObject.getIntTapCount() > 1)
         {
             // get end time
-            timeObject.setEndingTime(juceTimeObject.toMilliseconds());
+            bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
 
             // convert elapsed time to seconds
-            seconds = timeObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
+            seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
 
             // convert elapsed time to minutes
             minutes = seconds / secondsInAMinute;
 
             // calculate BPM - subtract 1 from bpm count because intervals are always 1
             // less than the BPM count
-            bpmPrecise = (timeObject.getIntTapCount() - 1) / minutes;
+            bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
 
             bpmRounded = roundFloat(bpmPrecise);
 
@@ -257,9 +257,9 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_resetButton] -- add your button handler code here..
 
         // reset all fields
-        timeObject.setIntTapCount(0);
-        timeObject.setStartingTime(0);
-        timeObject.setEndingTime(0);
+        bpmObject.setIntTapCount(0);
+        bpmObject.setStartingTime(0);
+        bpmObject.setEndingTime(0);
 
         // set both fields back to 0
         tapOutputEditor->setText((String) 0);

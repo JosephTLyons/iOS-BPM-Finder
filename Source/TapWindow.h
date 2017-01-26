@@ -21,7 +21,7 @@
 #define __JUCE_HEADER_F309236315CAB33E__
 
 //[Headers]     -- You can add your own extra header files here --
-#include "TimeClass.hpp"
+#include "BPM.hpp"
 #include "../JuceLibraryCode/JuceHeader.h"
 //[/Headers]
 
@@ -59,7 +59,7 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
-    TimeClass timeObject;
+    BPM bpmObject;
     const int millisecondsInASecond = 1000;
     const int secondsInAMinute = 60;
 
