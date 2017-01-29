@@ -56,7 +56,7 @@ TapWindow::TapWindow ()
     tapOutputEditor->setCaretVisible (false);
     tapOutputEditor->setPopupMenuEnabled (true);
     tapOutputEditor->setText (String());
-
+ 
     addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
     bPMOutputEditor->setMultiLine (false);
     bPMOutputEditor->setReturnKeyStartsNewLine (false);
