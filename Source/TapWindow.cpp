@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.0
+  Created with Projucer version: 4.3.1
 
   ------------------------------------------------------------------------------
 
@@ -39,13 +39,14 @@ TapWindow::TapWindow ()
     tapButton->setButtonText (TRANS("Tap"));
     tapButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     tapButton->addListener (this);
-    tapButton->setColour (TextButton::buttonColourId, Colour (0xff79ab93));
+    tapButton->setColour (TextButton::buttonColourId, Colour (0xff53ffc5));
 
     addAndMakeVisible (resetButton = new TextButton ("resetButton"));
     resetButton->setButtonText (TRANS("Reset"));
     resetButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     resetButton->addListener (this);
-    resetButton->setColour (TextButton::buttonColourId, Colour (0xffc85454));
+    resetButton->setColour (TextButton::buttonColourId, Colour (0xffc43838));
+    resetButton->setColour (TextButton::textColourOffId, Colours::white);
 
     addAndMakeVisible (tapOutputEditor = new TextEditor ("new text editor"));
     tapOutputEditor->setMultiLine (false);
@@ -66,8 +67,8 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setText (String());
 
     addAndMakeVisible (taps = new Label ("taps",
-                                         TRANS("Taps")));
-    taps->setFont (Font (15.00f, Font::plain));
+                                         TRANS("Taps:")));
+    taps->setFont (Font (25.00f, Font::plain));
     taps->setJustificationType (Justification::centred);
     taps->setEditable (false, false, false);
     taps->setColour (Label::textColourId, Colours::white);
@@ -75,8 +76,8 @@ TapWindow::TapWindow ()
     taps->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (bPM = new Label ("bPM",
-                                        TRANS("BPM")));
-    bPM->setFont (Font (15.00f, Font::plain));
+                                        TRANS("BPM:")));
+    bPM->setFont (Font (25.00f, Font::plain));
     bPM->setJustificationType (Justification::centred);
     bPM->setEditable (false, false, false);
     bPM->setColour (Label::textColourId, Colours::white);
@@ -95,11 +96,11 @@ TapWindow::TapWindow ()
 
     addAndMakeVisible (JosephLyons = new Label ("Joseph Lyons",
                                                 TRANS("Joseph Lyons")));
-    JosephLyons->setFont (Font ("Baskerville", 28.40f, Font::plain));
+    JosephLyons->setFont (Font ("Savoye LET", 57.70f, Font::plain));
     JosephLyons->setJustificationType (Justification::centred);
     JosephLyons->setEditable (false, false, false);
     JosephLyons->setColour (Label::backgroundColourId, Colour (0x00ffffff));
-    JosephLyons->setColour (Label::textColourId, Colours::white);
+    JosephLyons->setColour (Label::textColourId, Colour (0xffd8d8d8));
     JosephLyons->setColour (TextEditor::textColourId, Colours::black);
     JosephLyons->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -173,12 +174,12 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (80, 133, 160, 24);
-    bPMOutputEditor->setBounds (80, 206, 160, 24);
-    taps->setBounds (0, 110, 320, 24);
-    bPM->setBounds (0, 184, 320, 24);
+    tapOutputEditor->setBounds (160, 126, 160, 24);
+    bPMOutputEditor->setBounds (160, 193, 160, 24);
+    taps->setBounds (0, 126, 160, 24);
+    bPM->setBounds (0, 193, 160, 24);
     BPMFinder->setBounds (0, 0, 320, 56);
-    JosephLyons->setBounds (0, 49, 320, 32);
+    JosephLyons->setBounds (0, 57, 320, 63);
     preciseModeToggle->setBounds (0, 240, 72, 24);
     beepToggle->setBounds (265, 240, 53, 24);
     //[UserResized] Add your own custom resize handling here..
@@ -306,29 +307,30 @@ BEGIN_JUCER_METADATA
                  fixedSize="1" initialWidth="320" initialHeight="568">
   <BACKGROUND backgroundColour="ff4e4242"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
-              virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff79ab93"
+              virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="ffc85454"
-              buttonText="Reset" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="ffc43838"
+              textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 133 160 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="160 126 160 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 206 160 24" initialText=""
+              virtualName="" explicitFocusOrder="0" pos="160 193 160 24" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
               caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="0 110 320 24" textCol="ffffffff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Taps" editableSingleClick="0"
+         explicitFocusOrder="0" pos="0 126 160 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Taps:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="36"/>
+         fontsize="25" bold="0" italic="0" justification="36"/>
   <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="0 184 320 24" textCol="ffffffff"
-         edTextCol="ff000000" edBkgCol="0" labelText="BPM" editableSingleClick="0"
+         explicitFocusOrder="0" pos="0 193 160 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="36"/>
+         fontsize="25" bold="0" italic="0" justification="36"/>
   <LABEL name="BPM Finder" id="2556d6d714a02054" memberName="BPMFinder"
          virtualName="" explicitFocusOrder="0" pos="0 0 320 56" bkgCol="ffffff"
          textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="BPM Finder"
@@ -336,10 +338,10 @@ BEGIN_JUCER_METADATA
          fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
          italic="0" justification="36"/>
   <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="JosephLyons"
-         virtualName="" explicitFocusOrder="0" pos="0 49 320 32" bkgCol="ffffff"
-         textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
+         virtualName="" explicitFocusOrder="0" pos="0 57 320 63" bkgCol="ffffff"
+         textCol="ffd8d8d8" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Baskerville" fontsize="28.399999999999998579" bold="0"
+         fontname="Savoye LET" fontsize="57.700000000000002842" bold="0"
          italic="0" justification="36"/>
   <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
                 virtualName="" explicitFocusOrder="0" pos="0 240 72 24" txtcol="ffffffff"
