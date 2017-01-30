@@ -2,14 +2,18 @@
 
 <JUCERPROJECT id="tkxAXT" name="BPM Finder" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BPMFinder" includeBinaryInAppConfig="1"
-              jucerVersion="4.3.0">
+              jucerVersion="4.3.1">
   <MAINGROUP id="CLNhQs" name="BPM Finder">
     <GROUP id="{A1290AB9-58A7-03D4-B987-E06A131A48F3}" name="Source">
+      <FILE id="ragUgM" name="BPM.cpp" compile="1" resource="0" file="Source/BPM.cpp"/>
+      <FILE id="y9kVsE" name="BPM.hpp" compile="0" resource="0" file="Source/BPM.hpp"/>
+      <FILE id="Hr6NRj" name="Misc Functions.cpp" compile="1" resource="0"
+            file="Source/Misc Functions.cpp"/>
+      <FILE id="s4ZZVp" name="Misc Functions.hpp" compile="0" resource="0"
+            file="Source/Misc Functions.hpp"/>
       <FILE id="miGSt3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="legHM1" name="TapWindow.h" compile="0" resource="0" file="Source/TapWindow.h"/>
       <FILE id="DP3Q9A" name="TapWindow.cpp" compile="1" resource="0" file="Source/TapWindow.cpp"/>
-      <FILE id="JNne2F" name="TimeClass.hpp" compile="0" resource="0" file="Source/TimeClass.hpp"/>
-      <FILE id="jvkZKO" name="TimeClass.cpp" compile="1" resource="0" file="Source/TimeClass.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

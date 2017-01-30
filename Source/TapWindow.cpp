@@ -56,7 +56,7 @@ TapWindow::TapWindow ()
     tapOutputEditor->setCaretVisible (false);
     tapOutputEditor->setPopupMenuEnabled (true);
     tapOutputEditor->setText (String());
- 
+
     addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
     bPMOutputEditor->setMultiLine (false);
     bPMOutputEditor->setReturnKeyStartsNewLine (false);
@@ -114,6 +114,11 @@ TapWindow::TapWindow ()
     beepToggle->addListener (this);
     beepToggle->setColour (ToggleButton::textColourId, Colours::white);
 
+    addAndMakeVisible (averageModeToggle = new ToggleButton ("averageModeToggle"));
+    averageModeToggle->setButtonText (TRANS("Average"));
+    averageModeToggle->addListener (this);
+    averageModeToggle->setColour (ToggleButton::textColourId, Colours::white);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -126,6 +131,7 @@ TapWindow::TapWindow ()
     // Precision mode and beep mode is off automatically
     preciseModeToggle->setToggleState(false, dontSendNotification);
     beepToggle->setToggleState(false, dontSendNotification);
+    averageModeToggle->setToggleState(true, dontSendNotification);
 
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
@@ -149,6 +155,7 @@ TapWindow::~TapWindow()
     JosephLyons = nullptr;
     preciseModeToggle = nullptr;
     beepToggle = nullptr;
+    averageModeToggle = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -182,6 +189,7 @@ void TapWindow::resized()
     JosephLyons->setBounds (0, 57, 320, 63);
     preciseModeToggle->setBounds (0, 240, 72, 24);
     beepToggle->setBounds (265, 240, 53, 24);
+    averageModeToggle->setBounds (128, 240, 72, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -213,45 +221,56 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
 
-        // start timer - only do this once
-        if(bpmObject.getIntTapCount() == 0)
-        {
-            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
-        }
-
-        bpmObject.incrementTapCount();
-
         // get and display newest tapcount
         tapOutputEditor->setText(bpmObject.getStringTapCount());
-
-        // get new current time to calculate new duration, do this everytime
-        if(bpmObject.getIntTapCount() > 1)
+        
+        // Enter average mode
+        if(averageModeToggle->getToggleState())
         {
-            // get end time
-            bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-
-            // convert elapsed time to seconds
-            seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-
-            // convert elapsed time to minutes
-            minutes = seconds / secondsInAMinute;
-
-            // calculate BPM - subtract 1 from bpm count because intervals are always 1
-            // less than the BPM count
-            bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
-
-            bpmRounded = roundFloat(bpmPrecise);
-
-            // Display either decimals or integer only
-            if(preciseModeToggle->getToggleState())
+            // start timer - only do this once
+            if(bpmObject.getIntTapCount() == 0)
             {
-                bPMOutputEditor->setText((String) bpmPrecise);
+                bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
             }
-
-            else
+            
+            bpmObject.incrementTapCount();
+            
+            // get new current time to calculate new duration, do this everytime
+            if(bpmObject.getIntTapCount() > 1)
             {
-                bPMOutputEditor->setText((String) bpmRounded);
+                // get end time
+                bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
+                
+                // convert elapsed time to seconds
+                seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
+                
+                // convert elapsed time to minutes
+                minutes = seconds / secondsInAMinute;
             }
+        }
+        
+        // Enter non-average mode
+        else
+        {
+            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
+                
+        }
+        
+        // calculate BPM - subtract 1 from bpm count because intervals are always 1
+        // less than the BPM count
+        bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
+        
+        bpmRounded = roundFloat(bpmPrecise);
+
+        // Display either decimals or integer only
+        if(preciseModeToggle->getToggleState())
+        {
+            bPMOutputEditor->setText((String) bpmPrecise);
+        }
+
+        else
+        {
+            bPMOutputEditor->setText((String) bpmRounded);
         }
 
         //[/UserButtonCode_tapButton]
@@ -280,6 +299,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_beepToggle] -- add your button handler code here..
         //[/UserButtonCode_beepToggle]
+    }
+    else if (buttonThatWasClicked == averageModeToggle)
+    {
+        //[UserButtonCode_averageModeToggle] -- add your button handler code here..
+        //[/UserButtonCode_averageModeToggle]
     }
 
     //[UserbuttonClicked_Post]
@@ -350,6 +374,10 @@ BEGIN_JUCER_METADATA
   <TOGGLEBUTTON name="beepToggle" id="3297335df774edc0" memberName="beepToggle"
                 virtualName="" explicitFocusOrder="0" pos="265 240 53 24" txtcol="ffffffff"
                 buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
+  <TOGGLEBUTTON name="averageModeToggle" id="540e24a23ba6e447" memberName="averageModeToggle"
+                virtualName="" explicitFocusOrder="0" pos="128 240 72 24" txtcol="ffffffff"
+                buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
 </JUCER_COMPONENT>
 
