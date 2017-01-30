@@ -136,6 +136,9 @@ TapWindow::TapWindow ()
     preciseModeToggle->setToggleState(false, dontSendNotification);
     beepToggle->setToggleState(false, dontSendNotification);
     averageModeToggle->setToggleState(true, dontSendNotification);
+    
+    // Set button to work on downclick, not "upclick"
+    tapButton->setTriggeredOnMouseDown(true);
 
     // Set Font object up
     fontForEditors.setSizeAndStyle(41, bold, 1, 0);
