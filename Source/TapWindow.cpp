@@ -220,9 +220,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == tapButton)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
-
-        // get and display newest tapcount
-        tapOutputEditor->setText(bpmObject.getStringTapCount());
         
         // Enter average mode
         if(averageModeToggle->getToggleState())
@@ -235,10 +232,13 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             
             bpmObject.incrementTapCount();
             
+            // get and display newest tapcount
+            tapOutputEditor->setText(bpmObject.getStringTapCount());
+            
             // get new current time to calculate new duration, do this everytime
             if(bpmObject.getIntTapCount() > 1)
             {
-                // get end time
+                // set end time
                 bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
                 
                 // convert elapsed time to seconds
@@ -247,20 +247,37 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
                 // convert elapsed time to minutes
                 minutes = seconds / secondsInAMinute;
             }
+            
+            // calculate BPM - subtract 1 from bpm count because intervals are always 1
+            // less than the BPM count
+            bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
+            
+            bpmRounded = roundFloat(bpmPrecise);
         }
         
         // Enter non-average mode
         else
         {
-            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
+            if(bpmObject.getIntTapCount() > 0)
+            {
+                bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
                 
+                // convert elapsed time to seconds
+                seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
+                
+                // convert elapsed time to minutes
+                minutes = seconds / secondsInAMinute;
+            }
+            
+            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
+            
+            bpmObject.incrementTapCount();
+            
+            // Divide by one, as we are only measuring the time between the current tap
+            bpmPrecise = 1 / minutes;
+            
+            bpmRounded = roundFloat(bpmPrecise);
         }
-        
-        // calculate BPM - subtract 1 from bpm count because intervals are always 1
-        // less than the BPM count
-        bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
-        
-        bpmRounded = roundFloat(bpmPrecise);
 
         // Display either decimals or integer only
         if(preciseModeToggle->getToggleState())
@@ -303,6 +320,10 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == averageModeToggle)
     {
         //[UserButtonCode_averageModeToggle] -- add your button handler code here..
+        
+        // Triggers reset when switching modes to reset internal values
+        resetButton->triggerClick();
+        
         //[/UserButtonCode_averageModeToggle]
     }
 
