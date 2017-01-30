@@ -72,7 +72,7 @@ TapWindow::TapWindow ()
 
     addAndMakeVisible (taps = new Label ("taps",
                                          TRANS("Taps:")));
-    taps->setFont (Font (25.00f, Font::plain));
+    taps->setFont (Font (41.00f, Font::plain));
     taps->setJustificationType (Justification::centred);
     taps->setEditable (false, false, false);
     taps->setColour (Label::textColourId, Colours::white);
@@ -81,7 +81,7 @@ TapWindow::TapWindow ()
 
     addAndMakeVisible (bPM = new Label ("bPM",
                                         TRANS("BPM:")));
-    bPM->setFont (Font (25.00f, Font::plain));
+    bPM->setFont (Font (41.00f, Font::plain));
     bPM->setJustificationType (Justification::centred);
     bPM->setEditable (false, false, false);
     bPM->setColour (Label::textColourId, Colours::white);
@@ -100,7 +100,7 @@ TapWindow::TapWindow ()
 
     addAndMakeVisible (JosephLyons = new Label ("Joseph Lyons",
                                                 TRANS("Joseph Lyons")));
-    JosephLyons->setFont (Font ("Savoye LET", 57.70f, Font::plain));
+    JosephLyons->setFont (Font ("Savoye LET", 34.70f, Font::plain));
     JosephLyons->setJustificationType (Justification::centred);
     JosephLyons->setEditable (false, false, false);
     JosephLyons->setColour (Label::backgroundColourId, Colour (0x00ffffff));
@@ -138,7 +138,7 @@ TapWindow::TapWindow ()
     averageModeToggle->setToggleState(true, dontSendNotification);
 
     // Set Font object up
-    fontForEditors.setSizeAndStyle(25, bold, 1, 0);
+    fontForEditors.setSizeAndStyle(41, bold, 1, 0);
 
     // Set font for textEditors
     tapOutputEditor->setFont(fontForEditors);
@@ -192,14 +192,14 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (160, 124, 160, 30);
-    bPMOutputEditor->setBounds (160, 191, 160, 30);
-    taps->setBounds (0, 126, 160, 24);
-    bPM->setBounds (0, 193, 160, 24);
+    tapOutputEditor->setBounds (160, 105, 160, 55);
+    bPMOutputEditor->setBounds (160, 171, 160, 55);
+    taps->setBounds (0, 102, 160, 50);
+    bPM->setBounds (0, 171, 160, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
-    JosephLyons->setBounds (0, 57, 320, 63);
-    preciseModeToggle->setBounds (0, 240, 72, 24);
-    beepToggle->setBounds (265, 240, 53, 24);
+    JosephLyons->setBounds (0, 47, 320, 47);
+    preciseModeToggle->setBounds (13, 240, 72, 24);
+    beepToggle->setBounds (254, 240, 53, 24);
     averageModeToggle->setBounds (126, 240, 72, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
@@ -383,23 +383,23 @@ BEGIN_JUCER_METADATA
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 124 160 30" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="160 105 160 55" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 191 160 30" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="160 171 160 55" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="0 126 160 24" textCol="ffffffff"
+         explicitFocusOrder="0" pos="0 102 160 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Taps:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="25" bold="0" italic="0" justification="36"/>
+         fontsize="41" bold="0" italic="0" justification="36"/>
   <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="0 193 160 24" textCol="ffffffff"
+         explicitFocusOrder="0" pos="0 171 160 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="25" bold="0" italic="0" justification="36"/>
+         fontsize="41" bold="0" italic="0" justification="36"/>
   <LABEL name="BPM Finder" id="2556d6d714a02054" memberName="BPMFinder"
          virtualName="" explicitFocusOrder="0" pos="0 0 320 56" bkgCol="ffffff"
          textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="BPM Finder"
@@ -407,17 +407,17 @@ BEGIN_JUCER_METADATA
          fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
          italic="0" justification="36"/>
   <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="JosephLyons"
-         virtualName="" explicitFocusOrder="0" pos="0 57 320 63" bkgCol="ffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 47 320 47" bkgCol="ffffff"
          textCol="ffd8d8d8" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Savoye LET" fontsize="57.700000000000002842" bold="0"
+         fontname="Savoye LET" fontsize="34.700000000000002842" bold="0"
          italic="0" justification="36"/>
   <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="0 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="13 240 72 24" txtcol="ffffffff"
                 buttonText="Precise" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="beepToggle" id="3297335df774edc0" memberName="beepToggle"
-                virtualName="" explicitFocusOrder="0" pos="265 240 53 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="254 240 53 24" txtcol="ffffffff"
                 buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="averageModeToggle" id="540e24a23ba6e447" memberName="averageModeToggle"

@@ -21,7 +21,7 @@
 		80371F7350884552D4F09C7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F976DD16A1A7D4C892EE557 /* QuartzCore.framework */; };
 		8EAD7E64F8FD2C6B7237B7F3 /* BPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B024F6C01865EC9CA07DEC0E /* BPM.cpp */; };
 		8FFEC930555CB0F5CA9B384F /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3BD18A0F8540FD69E2C2A7 /* Main.cpp */; };
-		99EE03231E3F240A0029BB48 /* BPM Finder Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 99EE03221E3F240A0029BB48 /* BPM Finder Notes.rtf */; };
+		99EE03251E3FE8810029BB48 /* BPM Finder Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 99EE03241E3FE8810029BB48 /* BPM Finder Notes.rtf */; };
 		9C4797741E6344BC36082BB2 /* Misc Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38B6A31EE241D5CDA9C62327 /* Misc Functions.cpp */; };
 		A479A9D0104379A72341C781 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B0384D51433CA78D9CC34A /* CoreGraphics.framework */; };
 		D6E5D54103D5807AF9C716C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98732B6642BC5828DD4505C6 /* Foundation.framework */; };
@@ -510,7 +510,7 @@
 		98732B6642BC5828DD4505C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		992D9310621E410BE9A629BB /* juce_GIFLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_GIFLoader.cpp; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/juce_GIFLoader.cpp; sourceTree = SOURCE_ROOT; };
 		9953B9E9114B41452A0C8A91 /* juce_HighResolutionTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_HighResolutionTimer.cpp; path = ../../../../Libraries/JUCE/modules/juce_core/threads/juce_HighResolutionTimer.cpp; sourceTree = SOURCE_ROOT; };
-		99EE03221E3F240A0029BB48 /* BPM Finder Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "BPM Finder Notes.rtf"; path = "../../Source/BPM Finder Notes.rtf"; sourceTree = "<group>"; };
+		99EE03241E3FE8810029BB48 /* BPM Finder Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "BPM Finder Notes.rtf"; path = "../../Source/BPM Finder Notes.rtf"; sourceTree = "<group>"; };
 		9A685E83098AEDD02199078C /* juce_CharPointer_UTF16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_CharPointer_UTF16.h; path = ../../../../Libraries/JUCE/modules/juce_core/text/juce_CharPointer_UTF16.h; sourceTree = SOURCE_ROOT; };
 		9A78DFB2CC6A53F04D1D23D3 /* pngread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngread.c; path = ../../../../Libraries/JUCE/modules/juce_graphics/image_formats/pnglib/pngread.c; sourceTree = SOURCE_ROOT; };
 		9B3BC7ECEFBCE570500A13C9 /* juce_OpenGLAppComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_OpenGLAppComponent.cpp; path = ../../../../Libraries/JUCE/modules/juce_opengl/utils/juce_OpenGLAppComponent.cpp; sourceTree = SOURCE_ROOT; };
@@ -2071,7 +2071,7 @@
 		D7780242CB4458EF32A5D77B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				99EE03221E3F240A0029BB48 /* BPM Finder Notes.rtf */,
+				99EE03241E3FE8810029BB48 /* BPM Finder Notes.rtf */,
 				DC3BD18A0F8540FD69E2C2A7 /* Main.cpp */,
 				5DFA6990363823518DAB7A81 /* TapWindow.h */,
 				28793F078A72E7A83A115855 /* TapWindow.cpp */,
@@ -2366,7 +2366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99EE03231E3F240A0029BB48 /* BPM Finder Notes.rtf in Resources */,
+				99EE03251E3FE8810029BB48 /* BPM Finder Notes.rtf in Resources */,
 				2DD2A6EADF55E34FC23D4A38 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2378,10 +2378,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EAD7E64F8FD2C6B7237B7F3 /* BPM.cpp in Sources */,
-				9C4797741E6344BC36082BB2 /* Misc Functions.cpp in Sources */,
 				8FFEC930555CB0F5CA9B384F /* Main.cpp in Sources */,
 				6A646FD1F260FDFF0AA3B42A /* TapWindow.cpp in Sources */,
+				8EAD7E64F8FD2C6B7237B7F3 /* BPM.cpp in Sources */,
+				9C4797741E6344BC36082BB2 /* Misc Functions.cpp in Sources */,
 				3AA9363B541512DD67795916 /* juce_core.mm in Sources */,
 				6018A7766E9D802284434B60 /* juce_data_structures.mm in Sources */,
 				04D590C733FF768D29FDE661 /* juce_events.mm in Sources */,
