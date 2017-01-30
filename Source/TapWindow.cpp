@@ -192,8 +192,8 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (160, 125, 160, 25);
-    bPMOutputEditor->setBounds (160, 192, 160, 25);
+    tapOutputEditor->setBounds (160, 124, 160, 30);
+    bPMOutputEditor->setBounds (160, 191, 160, 30);
     taps->setBounds (0, 126, 160, 24);
     bPM->setBounds (0, 193, 160, 24);
     BPMFinder->setBounds (0, 0, 320, 56);
@@ -283,10 +283,10 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
 
             bpmObject.incrementTapCount();
-            
+
             // get and display newest tapcount
             tapOutputEditor->setText(bpmObject.getStringTapCount());
-            
+
             // Set bpm to 0 in this mode on first tap, as there can't be a BPM with only one tap
             // Requires two taps to get a BPM
             if(bpmObject.getIntTapCount() == 1)
@@ -383,11 +383,11 @@ BEGIN_JUCER_METADATA
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 125 160 25" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="160 124 160 30" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 192 160 25" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="160 191 160 30" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
