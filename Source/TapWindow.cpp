@@ -55,6 +55,8 @@ TapWindow::TapWindow ()
     tapOutputEditor->setScrollbarsShown (true);
     tapOutputEditor->setCaretVisible (false);
     tapOutputEditor->setPopupMenuEnabled (true);
+    tapOutputEditor->setColour (TextEditor::textColourId, Colours::white);
+    tapOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff4e4242));
     tapOutputEditor->setText (String());
 
     addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
@@ -64,6 +66,8 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setScrollbarsShown (true);
     bPMOutputEditor->setCaretVisible (false);
     bPMOutputEditor->setPopupMenuEnabled (true);
+    bPMOutputEditor->setColour (TextEditor::textColourId, Colours::white);
+    bPMOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff4e4242));
     bPMOutputEditor->setText (String());
 
     addAndMakeVisible (taps = new Label ("taps",
@@ -132,17 +136,18 @@ TapWindow::TapWindow ()
     preciseModeToggle->setToggleState(false, dontSendNotification);
     beepToggle->setToggleState(false, dontSendNotification);
     averageModeToggle->setToggleState(true, dontSendNotification);
-    
+
     // Set Font object up
-    fontForEditors.setSizeAndStyle(30, bold, 1, 0);
-    
+    fontForEditors.setSizeAndStyle(25, bold, 1, 0);
+
     // Set font for textEditors
     tapOutputEditor->setFont(fontForEditors);
     bPMOutputEditor->setFont(fontForEditors);
-    
+
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
+
     //[/Constructor]
 }
 
@@ -187,15 +192,15 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (160, 126, 160, 24);
-    bPMOutputEditor->setBounds (160, 193, 160, 24);
+    tapOutputEditor->setBounds (160, 125, 160, 25);
+    bPMOutputEditor->setBounds (160, 192, 160, 25);
     taps->setBounds (0, 126, 160, 24);
     bPM->setBounds (0, 193, 160, 24);
     BPMFinder->setBounds (0, 0, 320, 56);
     JosephLyons->setBounds (0, 57, 320, 63);
     preciseModeToggle->setBounds (0, 240, 72, 24);
     beepToggle->setBounds (265, 240, 53, 24);
-    averageModeToggle->setBounds (128, 240, 72, 24);
+    averageModeToggle->setBounds (126, 240, 72, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -226,7 +231,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == tapButton)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
-        
+
         // Enter average mode
         if(averageModeToggle->getToggleState())
         {
@@ -235,53 +240,53 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             {
                 bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
             }
-            
+
             bpmObject.incrementTapCount();
-            
+
             // get and display newest tapcount
             tapOutputEditor->setText(bpmObject.getStringTapCount());
-            
+
             // get new current time to calculate new duration, do this everytime
             if(bpmObject.getIntTapCount() > 1)
             {
                 // set end time
                 bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-                
+
                 // convert elapsed time to seconds
                 seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-                
+
                 // convert elapsed time to minutes
                 minutes = seconds / secondsInAMinute;
             }
-            
+
             // calculate BPM - subtract 1 from bpm count because intervals are always 1
             // less than the BPM count
             bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
-            
+
             bpmRounded = roundFloat(bpmPrecise);
         }
-        
+
         // Enter non-average mode
         else
         {
             if(bpmObject.getIntTapCount() > 0)
             {
                 bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-                
+
                 // convert elapsed time to seconds
                 seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-                
+
                 // convert elapsed time to minutes
                 minutes = seconds / secondsInAMinute;
             }
-            
+
             bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
-            
+
             bpmObject.incrementTapCount();
-            
+
             // Divide by one, as we are only measuring the time between the current tap
             bpmPrecise = 1 / minutes;
-            
+
             bpmRounded = roundFloat(bpmPrecise);
         }
 
@@ -326,10 +331,10 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == averageModeToggle)
     {
         //[UserButtonCode_averageModeToggle] -- add your button handler code here..
-        
+
         // Triggers reset when switching modes to reset internal values
         resetButton->triggerClick();
-        
+
         //[/UserButtonCode_averageModeToggle]
     }
 
@@ -365,13 +370,13 @@ BEGIN_JUCER_METADATA
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 126 160 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
-              caret="0" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="160 125 160 25" textcol="ffffffff"
+              bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
+              readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 193 160 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="1" scrollbars="1"
-              caret="0" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="160 192 160 25" textcol="ffffffff"
+              bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
+              readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
          explicitFocusOrder="0" pos="0 126 160 24" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Taps:" editableSingleClick="0"
@@ -403,7 +408,7 @@ BEGIN_JUCER_METADATA
                 buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="averageModeToggle" id="540e24a23ba6e447" memberName="averageModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="128 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="126 240 72 24" txtcol="ffffffff"
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
 </JUCER_COMPONENT>
