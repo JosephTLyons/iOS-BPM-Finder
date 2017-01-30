@@ -283,9 +283,22 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
 
             bpmObject.incrementTapCount();
+            
+            // get and display newest tapcount
+            tapOutputEditor->setText(bpmObject.getStringTapCount());
+            
+            // Set bpm to 0 in this mode on first tap, as there can't be a BPM with only one tap
+            // Requires two taps to get a BPM
+            if(bpmObject.getIntTapCount() == 1)
+            {
+                bpmPrecise = 0;
+            }
 
-            // Divide by one, as we are only measuring the time between the current tap
-            bpmPrecise = 1 / minutes;
+            else
+            {
+                // Divide by one, as we are only measuring the time between the current tap
+                bpmPrecise = 1 / minutes;
+            }
 
             bpmRounded = roundFloat(bpmPrecise);
         }
