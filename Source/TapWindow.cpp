@@ -132,11 +132,17 @@ TapWindow::TapWindow ()
     preciseModeToggle->setToggleState(false, dontSendNotification);
     beepToggle->setToggleState(false, dontSendNotification);
     averageModeToggle->setToggleState(true, dontSendNotification);
-
+    
+    // Set Font object up
+    fontForEditors.setSizeAndStyle(30, bold, 1, 0);
+    
+    // Set font for textEditors
+    tapOutputEditor->setFont(fontForEditors);
+    bPMOutputEditor->setFont(fontForEditors);
+    
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
-
     //[/Constructor]
 }
 

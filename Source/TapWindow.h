@@ -59,6 +59,7 @@ private:
     BPM bpmObject;
     const int millisecondsInASecond = 1000;
     const int secondsInAMinute = 60;
+    Font fontForEditors;
 
     //[/UserVariables]
 
