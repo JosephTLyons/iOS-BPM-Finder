@@ -211,24 +211,9 @@ void TapWindow::resized()
 void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
-
-    // Was used to print out dimensions of iphone screen
-
-//    #include <iostream>
-//    using namespace std;
-//
-//    int width = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
-//    int height = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
-//
-//    cout << width << " ";
-//    cout << height;
-
+    
     Time juceTimeObject(Time::getCurrentTime());
-    double seconds;
-    double minutes;
-    double bpmPrecise;
-    int bpmRounded;
-
+    
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == tapButton)

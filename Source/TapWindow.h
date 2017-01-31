@@ -57,10 +57,19 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
     BPM bpmObject;
+    Font fontForEditors;
+    
+    double seconds;
+    double minutes;
+    
+    // Wouldn't normally initialize objects in a specification file, but these are const,
+    // So I can't declare them as const and assign their values in the constructor at the same time
     const int millisecondsInASecond = 1000;
     const int secondsInAMinute = 60;
-    Font fontForEditors;
-
+    
+    double bpmPrecise;
+    int bpmRounded;
+    
     //[/UserVariables]
 
     //==============================================================================
