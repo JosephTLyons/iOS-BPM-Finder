@@ -213,7 +213,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     
     Time juceTimeObject(Time::getCurrentTime());
-    
+    double seconds;
+    double minutes;
+    double bpmPrecise;
+    int bpmRounded;
+
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == tapButton)
