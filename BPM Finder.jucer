@@ -5,15 +5,13 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="CLNhQs" name="BPM Finder">
     <GROUP id="{A1290AB9-58A7-03D4-B987-E06A131A48F3}" name="Source">
+      <FILE id="OM1Gf4" name="BPM Finder Notes.rtf" compile="0" resource="1"
+            file="Source/BPM Finder Notes.rtf"/>
       <FILE id="miGSt3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="legHM1" name="TapWindow.h" compile="0" resource="0" file="Source/TapWindow.h"/>
       <FILE id="DP3Q9A" name="TapWindow.cpp" compile="1" resource="0" file="Source/TapWindow.cpp"/>
       <FILE id="y9kVsE" name="BPM.hpp" compile="0" resource="0" file="Source/BPM.hpp"/>
       <FILE id="ragUgM" name="BPM.cpp" compile="1" resource="0" file="Source/BPM.cpp"/>
-      <FILE id="s4ZZVp" name="Misc Functions.hpp" compile="0" resource="0"
-            file="Source/Misc Functions.hpp"/>
-      <FILE id="Hr6NRj" name="Misc Functions.cpp" compile="1" resource="0"
-            file="Source/Misc Functions.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
@@ -30,6 +28,8 @@
         <MODULEPATH id="juce_gui_basics" path="../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Libraries/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="portraitlandscape">
@@ -45,10 +45,14 @@
         <MODULEPATH id="juce_gui_basics" path="../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Libraries/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
