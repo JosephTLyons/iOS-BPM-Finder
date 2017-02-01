@@ -192,10 +192,10 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (160, 105, 160, 55);
-    bPMOutputEditor->setBounds (160, 171, 160, 55);
-    taps->setBounds (0, 102, 160, 50);
-    bPM->setBounds (0, 171, 160, 50);
+    tapOutputEditor->setBounds (130, 105, 190, 55);
+    bPMOutputEditor->setBounds (130, 171, 190, 55);
+    taps->setBounds (0, 102, 130, 50);
+    bPM->setBounds (0, 171, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
     JosephLyons->setBounds (0, 47, 320, 47);
     preciseModeToggle->setBounds (13, 240, 72, 24);
@@ -230,7 +230,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
                 // Set minutes to one, otherwise, first tap will result in a division with
                 // 0 in the denominator, which will output "nan" on the first tap
                 minutes = 1;
-                
+
                 bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
             }
 
@@ -393,20 +393,20 @@ BEGIN_JUCER_METADATA
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 105 160 55" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="130 105 190 55" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="160 171 160 55" textcol="ffffffff"
+              virtualName="" explicitFocusOrder="0" pos="130 171 190 55" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="0 102 160 50" textCol="ffffffff"
+         explicitFocusOrder="0" pos="0 102 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Taps:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="41" bold="0" italic="0" justification="36"/>
   <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="0 171 160 50" textCol="ffffffff"
+         explicitFocusOrder="0" pos="0 171 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="41" bold="0" italic="0" justification="36"/>
