@@ -95,15 +95,15 @@ TapWindow::TapWindow ()
     BPMFinder->setColour (TextEditor::textColourId, Colours::black);
     BPMFinder->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (JosephLyons = new Label ("Joseph Lyons",
-                                                TRANS("Joseph Lyons")));
-    JosephLyons->setFont (Font ("Savoye LET", 34.70f, Font::plain));
-    JosephLyons->setJustificationType (Justification::centred);
-    JosephLyons->setEditable (false, false, false);
-    JosephLyons->setColour (Label::backgroundColourId, Colour (0x00ffffff));
-    JosephLyons->setColour (Label::textColourId, Colour (0xffd8d8d8));
-    JosephLyons->setColour (TextEditor::textColourId, Colours::black);
-    JosephLyons->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (lyonsDenLabel = new Label ("Joseph Lyons",
+                                                  TRANS("The Lyons\' Den Media")));
+    lyonsDenLabel->setFont (Font ("Savoye LET", 34.70f, Font::plain));
+    lyonsDenLabel->setJustificationType (Justification::centred);
+    lyonsDenLabel->setEditable (false, false, false);
+    lyonsDenLabel->setColour (Label::backgroundColourId, Colour (0x00ffffff));
+    lyonsDenLabel->setColour (Label::textColourId, Colour (0xffd8d8d8));
+    lyonsDenLabel->setColour (TextEditor::textColourId, Colours::black);
+    lyonsDenLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (preciseModeToggle = new ToggleButton ("preciseModeToggle"));
     preciseModeToggle->setButtonText (TRANS("Precise"));
@@ -163,7 +163,7 @@ TapWindow::~TapWindow()
     taps = nullptr;
     bPM = nullptr;
     BPMFinder = nullptr;
-    JosephLyons = nullptr;
+    lyonsDenLabel = nullptr;
     preciseModeToggle = nullptr;
     beepToggle = nullptr;
     averageModeToggle = nullptr;
@@ -197,7 +197,7 @@ void TapWindow::resized()
     taps->setBounds (0, 102, 130, 50);
     bPM->setBounds (0, 171, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
-    JosephLyons->setBounds (0, 47, 320, 47);
+    lyonsDenLabel->setBounds (0, 47, 320, 47);
     preciseModeToggle->setBounds (13, 240, 72, 24);
     beepToggle->setBounds (254, 240, 53, 24);
     averageModeToggle->setBounds (126, 240, 72, 24);
@@ -416,9 +416,9 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
          italic="0" justification="36"/>
-  <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="JosephLyons"
+  <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="lyonsDenLabel"
          virtualName="" explicitFocusOrder="0" pos="0 47 320 47" bkgCol="ffffff"
-         textCol="ffd8d8d8" edTextCol="ff000000" edBkgCol="0" labelText="Joseph Lyons"
+         textCol="ffd8d8d8" edTextCol="ff000000" edBkgCol="0" labelText="The Lyons' Den Media"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Savoye LET" fontsize="34.700000000000002842" bold="0"
          italic="0" justification="36"/>

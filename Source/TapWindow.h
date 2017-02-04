@@ -77,7 +77,7 @@ private:
     ScopedPointer<Label> taps;
     ScopedPointer<Label> bPM;
     ScopedPointer<Label> BPMFinder;
-    ScopedPointer<Label> JosephLyons;
+    ScopedPointer<Label> lyonsDenLabel;
     ScopedPointer<ToggleButton> preciseModeToggle;
     ScopedPointer<ToggleButton> beepToggle;
     ScopedPointer<ToggleButton> averageModeToggle;
