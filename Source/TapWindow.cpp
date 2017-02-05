@@ -208,100 +208,29 @@ void TapWindow::resized()
 void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
-
-    Time juceTimeObject(Time::getCurrentTime());
-    double seconds    = 0;
-    double minutes    = 0;
-    double bpmPrecise = 0;
-    int bpmRounded    = 0;
-
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == tapButton)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
 
-        // Enter average mode
         if(averageModeToggle->getToggleState())
         {
-            // start timer - only do this once
-            if(bpmObject.getIntTapCount() == 0)
-            {
-                // Set minutes to one, otherwise, first tap will result in a division with
-                // 0 in the denominator, which will output "nan" on the first tap
-                minutes = 1;
-
-                bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
-            }
-
-            bpmObject.incrementTapCount();
-
-            // get and display newest tapcount
-            tapOutputEditor->setText(bpmObject.getStringTapCount());
-
-            // get new current time to calculate new duration, do this everytime
-            if(bpmObject.getIntTapCount() > 1)
-            {
-                // set end time
-                bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-
-                // convert elapsed time to seconds
-                seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-
-                // convert elapsed time to minutes
-                minutes = seconds / secondsInAMinute;
-            }
-
-            // calculate BPM - subtract 1 from bpm count because intervals are always 1
-            // less than the BPM count
-            bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
-
-            bpmRounded = roundFloat(bpmPrecise);
+            enterAverageMode();
         }
 
-        // Enter non-average mode
         else
         {
-            if(bpmObject.getIntTapCount() > 0)
-            {
-                bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-
-                // convert elapsed time to seconds
-                seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-
-                // convert elapsed time to minutes
-                minutes = seconds / secondsInAMinute;
-            }
-
-            bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
-
-            bpmObject.incrementTapCount();
-
-            // get and display newest tapcount
-            tapOutputEditor->setText(bpmObject.getStringTapCount());
-
-            // Set bpm to 0 in this mode on first tap, as there can't be a BPM with only one tap
-            // Requires two taps to get a BPM
-            if(bpmObject.getIntTapCount() == 1)
-            {
-                bpmPrecise = 0;
-            }
-
-            else
-            {
-                // Divide by one, as we are only measuring the time between the current tap
-                bpmPrecise = 1 / minutes;
-            }
-
-            bpmRounded = roundFloat(bpmPrecise);
+            enterNonAverageMode();
         }
 
-        // Display either decimals or integer only
+        // Display precise mode
         if(preciseModeToggle->getToggleState())
         {
             bPMOutputEditor->setText((String) bpmPrecise);
         }
-
+        
+        // Display rounded mode
         else
         {
             bPMOutputEditor->setText((String) bpmRounded);
@@ -366,6 +295,82 @@ int TapWindow::roundFloat(const float &floatNumber)
     }
 
     return roundedNumber;
+}
+
+void TapWindow::enterAverageMode()
+{
+    Time juceTimeObject(Time::getCurrentTime());
+    
+    // start timer - only do this once
+    if(bpmObject.getIntTapCount() == 0)
+    {
+        // Set minutes to one, otherwise, first tap will result in a division with
+        // 0 in the denominator, which will output "nan" on the first tap
+        minutes = 1;
+        
+        bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
+    }
+    
+    bpmObject.incrementTapCount();
+    
+    // get and display newest tapcount
+    tapOutputEditor->setText(bpmObject.getStringTapCount());
+    
+    // get new current time to calculate new duration, do this everytime
+    if(bpmObject.getIntTapCount() > 1)
+    {
+        getTimeElapsedInMinutes(juceTimeObject);
+    }
+    
+    // calculate BPM - subtract 1 from bpm count because intervals are always 1
+    // less than the BPM count
+    bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
+    
+    bpmRounded = roundFloat(bpmPrecise);
+}
+
+void TapWindow::enterNonAverageMode()
+{
+    Time juceTimeObject(Time::getCurrentTime());
+    
+    if(bpmObject.getIntTapCount() > 0)
+    {
+        getTimeElapsedInMinutes(juceTimeObject);
+    }
+    
+    bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
+    
+    bpmObject.incrementTapCount();
+    
+    // get and display newest tapcount
+    tapOutputEditor->setText(bpmObject.getStringTapCount());
+    
+    // Set bpm to 0 in this mode on first tap, as there can't be a BPM with only one tap
+    // Requires two taps to get a BPM
+    if(bpmObject.getIntTapCount() == 1)
+    {
+        bpmPrecise = 0;
+    }
+    
+    else
+    {
+        // Divide by one, as we are only measuring the time between the current tap
+        bpmPrecise = 1 / minutes;
+    }
+    
+    bpmRounded = roundFloat(bpmPrecise);
+}
+
+void TapWindow::getTimeElapsedInMinutes(const Time &juceTimeObject)
+{
+    // set end time
+    bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
+    
+    // convert elapsed time to seconds
+    seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
+    
+    // convert elapsed time to minutes
+    minutes = seconds / secondsInAMinute;
 }
 
 //[/MiscUserCode]

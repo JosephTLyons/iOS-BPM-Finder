@@ -47,6 +47,9 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
 
     int roundFloat(const float &floatNumber);
+    void enterAverageMode();
+    void enterNonAverageMode();
+    void getTimeElapsedInMinutes(const Time &juceTimeObject);
 
     //[/UserMethods]
 
@@ -64,8 +67,15 @@ private:
 
     BPM bpmObject;
     Font fontForEditors;
+    
+    double seconds    = 0;
+    double minutes    = 0;
+    
     const int millisecondsInASecond = 1000;
     const int secondsInAMinute = 60;
+    
+    double bpmPrecise = 0;
+    int bpmRounded    = 0;
 
     //[/UserVariables]
 
