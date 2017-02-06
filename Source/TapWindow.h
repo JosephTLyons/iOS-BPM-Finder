@@ -72,7 +72,7 @@ private:
     double minutes    = 0;
     
     const int millisecondsInASecond = 1000;
-    const int secondsInAMinute = 60;
+    const int secondsInAMinute      = 60;
     
     double bpmPrecise = 0;
     int bpmRounded    = 0;

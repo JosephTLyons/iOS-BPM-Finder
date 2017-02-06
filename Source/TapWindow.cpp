@@ -270,6 +270,17 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         // Triggers reset when switching modes to reset internal values
         resetButton->triggerClick();
 
+        // Disable reset button in non-average mode, as it is not needed there
+        if(averageModeToggle->getToggleState())
+        {
+            resetButton->setEnabled(true);
+        }
+        
+        else
+        {
+            resetButton->setEnabled(false);
+        }
+
         //[/UserButtonCode_averageModeToggle]
     }
 
@@ -280,22 +291,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-
-int TapWindow::roundFloat(const float &floatNumber)
-{
-    // Truncate
-    int roundedNumber = floatNumber;
-
-    // Get just decimal value and use that to decide if we round or not
-    float roundingFactor = floatNumber - roundedNumber;
-
-    if(roundingFactor >= 0.5)
-    {
-        roundedNumber++;
-    }
-
-    return roundedNumber;
-}
 
 void TapWindow::enterAverageMode()
 {
@@ -371,6 +366,22 @@ void TapWindow::getTimeElapsedInMinutes(const Time &juceTimeObject)
     
     // convert elapsed time to minutes
     minutes = seconds / secondsInAMinute;
+}
+
+int TapWindow::roundFloat(const float &floatNumber)
+{
+    // Truncate
+    int roundedNumber = floatNumber;
+    
+    // Get just decimal value and use that to decide if we round or not
+    float roundingFactor = floatNumber - roundedNumber;
+    
+    if(roundingFactor >= 0.5)
+    {
+        roundedNumber++;
+    }
+    
+    return roundedNumber;
 }
 
 //[/MiscUserCode]
