@@ -270,17 +270,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         // Triggers reset when switching modes to reset internal values
         resetButton->triggerClick();
 
-        // Disable reset button in non-average mode, as it is not needed there
-        if(averageModeToggle->getToggleState())
-        {
-            resetButton->setEnabled(true);
-        }
-        
-        else
-        {
-            resetButton->setEnabled(false);
-        }
-
         //[/UserButtonCode_averageModeToggle]
     }
 
