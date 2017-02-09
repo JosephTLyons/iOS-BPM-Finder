@@ -124,7 +124,7 @@ TapWindow::TapWindow ()
     lockButton->setButtonText (TRANS("Lock"));
     lockButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     lockButton->addListener (this);
-    lockButton->setColour (TextButton::buttonColourId, Colour (0xffe86e1f));
+    lockButton->setColour (TextButton::buttonColourId, Colour (0xffff7a3d));
     lockButton->setColour (TextButton::textColourOffId, Colours::white);
 
 
@@ -291,7 +291,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_lockButton] -- add your button handler code here..
 
-        resetButton->setEnabled(true);
+    
+        if(lockButton->isDown())
+        {
+            resetButton->setEnabled(true);
+        }
 
         //[/UserButtonCode_lockButton]
     }
@@ -463,7 +467,7 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
   <TEXTBUTTON name="lockButton" id="888d4ba6b368a77a" memberName="lockButton"
-              virtualName="" explicitFocusOrder="0" pos="0 518 50 50" bgColOff="ffe86e1f"
+              virtualName="" explicitFocusOrder="0" pos="0 518 50 50" bgColOff="ffff7a3d"
               textCol="ffffffff" buttonText="Lock" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>
