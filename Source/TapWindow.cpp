@@ -141,8 +141,9 @@ TapWindow::TapWindow ()
     beepToggle->setToggleState(false, dontSendNotification);
     averageModeToggle->setToggleState(true, dontSendNotification);
 
-    // Set button to work on downclick, not "upclick"
+    // Set buttons to work on downclick, not "upclick"
     tapButton->setTriggeredOnMouseDown(true);
+    lockButton->setTriggeredOnMouseDown(true);
 
     // Set Font object up
     fontForEditors.setSizeAndStyle(41, bold, 1, 0);
@@ -154,6 +155,9 @@ TapWindow::TapWindow ()
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
+
+    // Disable resetButton
+    resetButton->setEnabled(false);
 
     //[/Constructor]
 }
@@ -199,7 +203,7 @@ void TapWindow::resized()
     //[/UserPreResize]
 
     tapButton->setBounds (0, 268, 320, 250);
-    resetButton->setBounds (0, 518, 270, 50);
+    resetButton->setBounds (50, 518, 270, 50);
     tapOutputEditor->setBounds (130, 105, 190, 55);
     bPMOutputEditor->setBounds (130, 171, 190, 55);
     taps->setBounds (0, 103, 130, 50);
@@ -209,7 +213,7 @@ void TapWindow::resized()
     beepToggle->setBounds (254, 240, 53, 24);
     averageModeToggle->setBounds (126, 240, 72, 24);
     taps2->setBounds (0, 169, 130, 50);
-    lockButton->setBounds (270, 518, 50, 50);
+    lockButton->setBounds (0, 518, 50, 50);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -222,6 +226,8 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == tapButton)
     {
         //[UserButtonCode_tapButton] -- add your button handler code here..
+
+        resetButton->setEnabled(false);
 
         if(averageModeToggle->getToggleState())
         {
@@ -284,6 +290,9 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == lockButton)
     {
         //[UserButtonCode_lockButton] -- add your button handler code here..
+
+        resetButton->setEnabled(true);
+
         //[/UserButtonCode_lockButton]
     }
 
@@ -408,7 +417,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="0 518 270 50" bgColOff="fffc4141"
+              virtualName="" explicitFocusOrder="0" pos="50 518 270 50" bgColOff="fffc4141"
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
@@ -454,7 +463,7 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
   <TEXTBUTTON name="lockButton" id="888d4ba6b368a77a" memberName="lockButton"
-              virtualName="" explicitFocusOrder="0" pos="270 518 50 50" bgColOff="ffe86e1f"
+              virtualName="" explicitFocusOrder="0" pos="0 518 50 50" bgColOff="ffe86e1f"
               textCol="ffffffff" buttonText="Lock" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>
