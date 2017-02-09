@@ -67,13 +67,13 @@ private:
 
     BPM bpmObject;
     Font fontForEditors;
-    
+
     double seconds    = 0;
     double minutes    = 0;
-    
+
     const int millisecondsInASecond = 1000;
     const int secondsInAMinute      = 60;
-    
+
     double bpmPrecise = 0;
     int bpmRounded    = 0;
 
@@ -85,12 +85,13 @@ private:
     ScopedPointer<TextEditor> tapOutputEditor;
     ScopedPointer<TextEditor> bPMOutputEditor;
     ScopedPointer<Label> taps;
-    ScopedPointer<Label> bPM;
     ScopedPointer<Label> BPMFinder;
     ScopedPointer<Label> lyonsDenLabel;
     ScopedPointer<ToggleButton> preciseModeToggle;
     ScopedPointer<ToggleButton> beepToggle;
     ScopedPointer<ToggleButton> averageModeToggle;
+    ScopedPointer<Label> taps2;
+    ScopedPointer<TextButton> lockButton;
 
 
     //==============================================================================

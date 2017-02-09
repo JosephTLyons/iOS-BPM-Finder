@@ -42,7 +42,7 @@ TapWindow::TapWindow ()
     resetButton->setButtonText (TRANS("Reset"));
     resetButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     resetButton->addListener (this);
-    resetButton->setColour (TextButton::buttonColourId, Colour (0xffc43838));
+    resetButton->setColour (TextButton::buttonColourId, Colour (0xfffc4141));
     resetButton->setColour (TextButton::textColourOffId, Colours::white);
 
     addAndMakeVisible (tapOutputEditor = new TextEditor ("new text editor"));
@@ -68,22 +68,13 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setText (String());
 
     addAndMakeVisible (taps = new Label ("taps",
-                                         TRANS("Taps:")));
-    taps->setFont (Font (41.00f, Font::plain));
-    taps->setJustificationType (Justification::centred);
+                                         TRANS("TAPS:\n")));
+    taps->setFont (Font ("Baskerville", 48.00f, Font::plain));
+    taps->setJustificationType (Justification::centredRight);
     taps->setEditable (false, false, false);
     taps->setColour (Label::textColourId, Colours::white);
     taps->setColour (TextEditor::textColourId, Colours::black);
     taps->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    addAndMakeVisible (bPM = new Label ("bPM",
-                                        TRANS("BPM:")));
-    bPM->setFont (Font (41.00f, Font::plain));
-    bPM->setJustificationType (Justification::centred);
-    bPM->setEditable (false, false, false);
-    bPM->setColour (Label::textColourId, Colours::white);
-    bPM->setColour (TextEditor::textColourId, Colours::black);
-    bPM->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (BPMFinder = new Label ("BPM Finder",
                                               TRANS("BPM Finder")));
@@ -119,6 +110,22 @@ TapWindow::TapWindow ()
     averageModeToggle->setButtonText (TRANS("Average"));
     averageModeToggle->addListener (this);
     averageModeToggle->setColour (ToggleButton::textColourId, Colours::white);
+
+    addAndMakeVisible (taps2 = new Label ("taps",
+                                          TRANS("BPM:")));
+    taps2->setFont (Font ("Baskerville", 48.00f, Font::plain));
+    taps2->setJustificationType (Justification::centredRight);
+    taps2->setEditable (false, false, false);
+    taps2->setColour (Label::textColourId, Colours::white);
+    taps2->setColour (TextEditor::textColourId, Colours::black);
+    taps2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (lockButton = new TextButton ("lockButton"));
+    lockButton->setButtonText (TRANS("Lock"));
+    lockButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    lockButton->addListener (this);
+    lockButton->setColour (TextButton::buttonColourId, Colour (0xffe86e1f));
+    lockButton->setColour (TextButton::textColourOffId, Colours::white);
 
 
     //[UserPreSize]
@@ -161,12 +168,13 @@ TapWindow::~TapWindow()
     tapOutputEditor = nullptr;
     bPMOutputEditor = nullptr;
     taps = nullptr;
-    bPM = nullptr;
     BPMFinder = nullptr;
     lyonsDenLabel = nullptr;
     preciseModeToggle = nullptr;
     beepToggle = nullptr;
     averageModeToggle = nullptr;
+    taps2 = nullptr;
+    lockButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -191,16 +199,17 @@ void TapWindow::resized()
     //[/UserPreResize]
 
     tapButton->setBounds (0, 268, 320, 250);
-    resetButton->setBounds (0, 518, 320, 50);
+    resetButton->setBounds (0, 518, 270, 50);
     tapOutputEditor->setBounds (130, 105, 190, 55);
     bPMOutputEditor->setBounds (130, 171, 190, 55);
-    taps->setBounds (0, 102, 130, 50);
-    bPM->setBounds (0, 171, 130, 50);
+    taps->setBounds (0, 103, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
     lyonsDenLabel->setBounds (0, 47, 320, 47);
     preciseModeToggle->setBounds (13, 240, 72, 24);
     beepToggle->setBounds (254, 240, 53, 24);
     averageModeToggle->setBounds (126, 240, 72, 24);
+    taps2->setBounds (0, 169, 130, 50);
+    lockButton->setBounds (270, 518, 50, 50);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -229,7 +238,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         {
             bPMOutputEditor->setText((String) bpmPrecise);
         }
-        
+
         // Display rounded mode
         else
         {
@@ -272,6 +281,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
         //[/UserButtonCode_averageModeToggle]
     }
+    else if (buttonThatWasClicked == lockButton)
+    {
+        //[UserButtonCode_lockButton] -- add your button handler code here..
+        //[/UserButtonCode_lockButton]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -284,64 +298,64 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 void TapWindow::enterAverageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
-    
+
     // start timer - only do this once
     if(bpmObject.getIntTapCount() == 0)
     {
         // Set minutes to one, otherwise, first tap will result in a division with
         // 0 in the denominator, which will output "nan" on the first tap
         minutes = 1;
-        
+
         bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
     }
-    
+
     bpmObject.incrementTapCount();
-    
+
     // get and display newest tapcount
     tapOutputEditor->setText(bpmObject.getStringTapCount());
-    
+
     // get new current time to calculate new duration, do this everytime
     if(bpmObject.getIntTapCount() > 1)
     {
         getTimeElapsedInMinutes(juceTimeObject);
     }
-    
+
     // calculate BPM - subtract 1 from bpm count because intervals are always 1
     // less than the BPM count
     bpmPrecise = (bpmObject.getIntTapCount() - 1) / minutes;
-    
+
     bpmRounded = roundFloat(bpmPrecise);
 }
 
 void TapWindow::enterNonAverageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
-    
+
     if(bpmObject.getIntTapCount() > 0)
     {
         getTimeElapsedInMinutes(juceTimeObject);
     }
-    
+
     bpmObject.setStartingTime(juceTimeObject.toMilliseconds());
-    
+
     bpmObject.incrementTapCount();
-    
+
     // get and display newest tapcount
     tapOutputEditor->setText(bpmObject.getStringTapCount());
-    
+
     // Set bpm to 0 in this mode on first tap, as there can't be a BPM with only one tap
     // Requires two taps to get a BPM
     if(bpmObject.getIntTapCount() == 1)
     {
         bpmPrecise = 0;
     }
-    
+
     else
     {
         // Divide by one, as we are only measuring the time between the current tap
         bpmPrecise = 1 / minutes;
     }
-    
+
     bpmRounded = roundFloat(bpmPrecise);
 }
 
@@ -349,10 +363,10 @@ void TapWindow::getTimeElapsedInMinutes(const Time &juceTimeObject)
 {
     // set end time
     bpmObject.setEndingTime(juceTimeObject.toMilliseconds());
-    
+
     // convert elapsed time to seconds
     seconds = bpmObject.getTotalTimeElapsed() / (double) millisecondsInASecond;
-    
+
     // convert elapsed time to minutes
     minutes = seconds / secondsInAMinute;
 }
@@ -361,15 +375,15 @@ int TapWindow::roundFloat(const float &floatNumber)
 {
     // Truncate
     int roundedNumber = floatNumber;
-    
+
     // Get just decimal value and use that to decide if we round or not
     float roundingFactor = floatNumber - roundedNumber;
-    
+
     if(roundingFactor >= 0.5)
     {
         roundedNumber++;
     }
-    
+
     return roundedNumber;
 }
 
@@ -394,7 +408,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="ffc43838"
+              virtualName="" explicitFocusOrder="0" pos="0 518 270 50" bgColOff="fffc4141"
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
@@ -406,15 +420,10 @@ BEGIN_JUCER_METADATA
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="0 102 130 50" textCol="ffffffff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Taps:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="41" bold="0" italic="0" justification="36"/>
-  <LABEL name="bPM" id="6a439a16ebfb2284" memberName="bPM" virtualName=""
-         explicitFocusOrder="0" pos="0 171 130 50" textCol="ffffffff"
-         edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="41" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="0 103 130 50" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="TAPS:&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
+         fontsize="48" bold="0" italic="0" justification="34"/>
   <LABEL name="BPM Finder" id="2556d6d714a02054" memberName="BPMFinder"
          virtualName="" explicitFocusOrder="0" pos="0 0 320 56" bkgCol="ffffff"
          textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="BPM Finder"
@@ -439,6 +448,15 @@ BEGIN_JUCER_METADATA
                 virtualName="" explicitFocusOrder="0" pos="126 240 72 24" txtcol="ffffffff"
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
+  <LABEL name="taps" id="51ca7c70af01bc76" memberName="taps2" virtualName=""
+         explicitFocusOrder="0" pos="0 169 130 50" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
+         fontsize="48" bold="0" italic="0" justification="34"/>
+  <TEXTBUTTON name="lockButton" id="888d4ba6b368a77a" memberName="lockButton"
+              virtualName="" explicitFocusOrder="0" pos="270 518 50 50" bgColOff="ffe86e1f"
+              textCol="ffffffff" buttonText="Lock" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
