@@ -248,7 +248,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         {
             bPMOutputEditor->setText((String) bpmRounded);
         }
-        
+
         resetButton->setEnabled(false);
 
         //[/UserButtonCode_tapButton]
@@ -265,7 +265,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         // set both fields back to 0
         tapOutputEditor->setText((String) 0);
         bPMOutputEditor->setText((String) 0);
-    
+
         //[/UserButtonCode_resetButton]
     }
     else if (buttonThatWasClicked == preciseModeToggle)
@@ -290,9 +290,9 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == lockButton)
     {
         //[UserButtonCode_lockButton] -- add your button handler code here..
-        
+
         resetButton->setEnabled(true);
-        
+
         //[/UserButtonCode_lockButton]
     }
 
