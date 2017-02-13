@@ -125,6 +125,15 @@ TapWindow::TapWindow ()
     safeToggle->addListener (this);
     safeToggle->setColour (ToggleButton::textColourId, Colours::white);
 
+    addAndMakeVisible (modesLabel = new Label ("modesLabel",
+                                               TRANS("Modes:")));
+    modesLabel->setFont (Font (15.00f, Font::plain));
+    modesLabel->setJustificationType (Justification::centredLeft);
+    modesLabel->setEditable (false, false, false);
+    modesLabel->setColour (Label::textColourId, Colours::white);
+    modesLabel->setColour (TextEditor::textColourId, Colours::black);
+    modesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -174,6 +183,7 @@ TapWindow::~TapWindow()
     averageModeToggle = nullptr;
     bpmLabel = nullptr;
     safeToggle = nullptr;
+    modesLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -204,11 +214,12 @@ void TapWindow::resized()
     tapsLabel->setBounds (0, 103, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
     lyonsDenLabel->setBounds (0, 47, 320, 47);
-    preciseModeToggle->setBounds (15, 240, 72, 24);
-    beepToggle->setBounds (188, 240, 53, 24);
-    averageModeToggle->setBounds (99, 240, 72, 24);
+    preciseModeToggle->setBounds (60, 240, 67, 24);
+    beepToggle->setBounds (207, 240, 53, 24);
+    averageModeToggle->setBounds (130, 240, 74, 24);
     bpmLabel->setBounds (0, 169, 130, 50);
-    safeToggle->setBounds (255, 240, 56, 24);
+    safeToggle->setBounds (264, 240, 50, 24);
+    modesLabel->setBounds (5, 240, 54, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -282,13 +293,13 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             resetButton->setEnabled(false);
             averageModeToggle->setEnabled(false);
         }
-        
+
         else
         {
             averageModeToggle->setEnabled(true);
             resetButton->setEnabled(true);
         }
-        
+
         //[/UserButtonCode_safeToggle]
     }
 
@@ -418,7 +429,7 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="TapWindow" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 snapPixels="5" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="320" initialHeight="568">
   <BACKGROUND backgroundColour="ff4e4242"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
@@ -454,15 +465,15 @@ BEGIN_JUCER_METADATA
          fontname="Savoye LET" fontsize="34.700000000000002842" bold="0"
          italic="0" justification="36"/>
   <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="15 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="60 240 67 24" txtcol="ffffffff"
                 buttonText="Precise" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="beepToggle" id="3297335df774edc0" memberName="beepToggle"
-                virtualName="" explicitFocusOrder="0" pos="188 240 53 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="207 240 53 24" txtcol="ffffffff"
                 buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="averageModeToggle" id="540e24a23ba6e447" memberName="averageModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="99 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="130 240 74 24" txtcol="ffffffff"
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <LABEL name="taps" id="51ca7c70af01bc76" memberName="bpmLabel" virtualName=""
@@ -471,9 +482,14 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
   <TOGGLEBUTTON name="safeToggle" id="4362a040c30aaf32" memberName="safeToggle"
-                virtualName="" explicitFocusOrder="0" pos="255 240 56 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="264 240 50 24" txtcol="ffffffff"
                 buttonText="Safe" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
+  <LABEL name="modesLabel" id="c14c612ddc8a53ae" memberName="modesLabel"
+         virtualName="" explicitFocusOrder="0" pos="5 240 54 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Modes:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

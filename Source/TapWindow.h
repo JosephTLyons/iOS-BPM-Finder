@@ -93,6 +93,7 @@ private:
     ScopedPointer<ToggleButton> averageModeToggle;
     ScopedPointer<Label> bpmLabel;
     ScopedPointer<ToggleButton> safeToggle;
+    ScopedPointer<Label> modesLabel;
 
 
     //==============================================================================
