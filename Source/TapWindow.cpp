@@ -67,14 +67,14 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff4e4242));
     bPMOutputEditor->setText (String());
 
-    addAndMakeVisible (taps = new Label ("taps",
-                                         TRANS("TAPS:\n")));
-    taps->setFont (Font ("Baskerville", 48.00f, Font::plain));
-    taps->setJustificationType (Justification::centredRight);
-    taps->setEditable (false, false, false);
-    taps->setColour (Label::textColourId, Colours::white);
-    taps->setColour (TextEditor::textColourId, Colours::black);
-    taps->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (tapsLabel = new Label ("tapsLabel",
+                                              TRANS("TAPS:\n")));
+    tapsLabel->setFont (Font ("Baskerville", 48.00f, Font::plain));
+    tapsLabel->setJustificationType (Justification::centredRight);
+    tapsLabel->setEditable (false, false, false);
+    tapsLabel->setColour (Label::textColourId, Colours::white);
+    tapsLabel->setColour (TextEditor::textColourId, Colours::black);
+    tapsLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (BPMFinder = new Label ("BPM Finder",
                                               TRANS("BPM Finder")));
@@ -111,14 +111,14 @@ TapWindow::TapWindow ()
     averageModeToggle->addListener (this);
     averageModeToggle->setColour (ToggleButton::textColourId, Colours::white);
 
-    addAndMakeVisible (taps2 = new Label ("taps",
-                                          TRANS("BPM:")));
-    taps2->setFont (Font ("Baskerville", 48.00f, Font::plain));
-    taps2->setJustificationType (Justification::centredRight);
-    taps2->setEditable (false, false, false);
-    taps2->setColour (Label::textColourId, Colours::white);
-    taps2->setColour (TextEditor::textColourId, Colours::black);
-    taps2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (bpmLabel = new Label ("taps",
+                                             TRANS("BPM:")));
+    bpmLabel->setFont (Font ("Baskerville", 48.00f, Font::plain));
+    bpmLabel->setJustificationType (Justification::centredRight);
+    bpmLabel->setEditable (false, false, false);
+    bpmLabel->setColour (Label::textColourId, Colours::white);
+    bpmLabel->setColour (TextEditor::textColourId, Colours::black);
+    bpmLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (lockButton = new TextButton ("lockButton"));
     lockButton->setButtonText (TRANS("Lock"));
@@ -156,8 +156,9 @@ TapWindow::TapWindow ()
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
 
-    // Disable resetButton
+    // Disable resetButton and averageModeToggle (because hitting this triggers a reset)
     resetButton->setEnabled(false);
+    averageModeToggle->setEnabled(false);
 
     //[/Constructor]
 }
@@ -171,13 +172,13 @@ TapWindow::~TapWindow()
     resetButton = nullptr;
     tapOutputEditor = nullptr;
     bPMOutputEditor = nullptr;
-    taps = nullptr;
+    tapsLabel = nullptr;
     BPMFinder = nullptr;
     lyonsDenLabel = nullptr;
     preciseModeToggle = nullptr;
     beepToggle = nullptr;
     averageModeToggle = nullptr;
-    taps2 = nullptr;
+    bpmLabel = nullptr;
     lockButton = nullptr;
 
 
@@ -206,13 +207,13 @@ void TapWindow::resized()
     resetButton->setBounds (50, 518, 270, 50);
     tapOutputEditor->setBounds (130, 105, 190, 55);
     bPMOutputEditor->setBounds (130, 171, 190, 55);
-    taps->setBounds (0, 103, 130, 50);
+    tapsLabel->setBounds (0, 103, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
     lyonsDenLabel->setBounds (0, 47, 320, 47);
     preciseModeToggle->setBounds (13, 240, 72, 24);
     beepToggle->setBounds (254, 240, 53, 24);
     averageModeToggle->setBounds (126, 240, 72, 24);
-    taps2->setBounds (0, 169, 130, 50);
+    bpmLabel->setBounds (0, 169, 130, 50);
     lockButton->setBounds (0, 518, 50, 50);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
@@ -229,12 +230,12 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
         if(averageModeToggle->getToggleState())
         {
-            enterAverageMode();
+            AverageMode();
         }
 
         else
         {
-            enterNonAverageMode();
+            NonAverageMode();
         }
 
         // Display precise mode
@@ -250,6 +251,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         }
 
         resetButton->setEnabled(false);
+        averageModeToggle->setEnabled(false);
 
         //[/UserButtonCode_tapButton]
     }
@@ -285,6 +287,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_lockButton] -- add your button handler code here..
 
         resetButton->setEnabled(true);
+        averageModeToggle->setEnabled(true);
 
         //[/UserButtonCode_lockButton]
     }
@@ -293,9 +296,11 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
+
+
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TapWindow::enterAverageMode()
+void TapWindow::AverageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
 
@@ -327,7 +332,7 @@ void TapWindow::enterAverageMode()
     bpmRounded = roundFloat(bpmPrecise);
 }
 
-void TapWindow::enterNonAverageMode()
+void TapWindow::NonAverageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
 
@@ -393,7 +398,7 @@ void TapWindow::resetAllFields()
     bpmObject.setIntTapCount(0);
     bpmObject.setStartingTime(0);
     bpmObject.setEndingTime(0);
-    
+
     // set both fields back to 0
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
@@ -431,8 +436,8 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="130 171 190 55" textcol="ffffffff"
               bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
-  <LABEL name="taps" id="6bb71dd7450d482a" memberName="taps" virtualName=""
-         explicitFocusOrder="0" pos="0 103 130 50" textCol="ffffffff"
+  <LABEL name="tapsLabel" id="6bb71dd7450d482a" memberName="tapsLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 103 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="TAPS:&#10;" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
@@ -460,7 +465,7 @@ BEGIN_JUCER_METADATA
                 virtualName="" explicitFocusOrder="0" pos="126 240 72 24" txtcol="ffffffff"
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
-  <LABEL name="taps" id="51ca7c70af01bc76" memberName="taps2" virtualName=""
+  <LABEL name="taps" id="51ca7c70af01bc76" memberName="bpmLabel" virtualName=""
          explicitFocusOrder="0" pos="0 169 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"

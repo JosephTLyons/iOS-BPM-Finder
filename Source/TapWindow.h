@@ -47,8 +47,8 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
 
     int roundFloat(const float &floatNumber);
-    void enterAverageMode();
-    void enterNonAverageMode();
+    void AverageMode();
+    void NonAverageMode();
     void getTimeElapsedInMinutes(const Time &juceTimeObject);
     void resetAllFields();
 
@@ -85,13 +85,13 @@ private:
     ScopedPointer<TextButton> resetButton;
     ScopedPointer<TextEditor> tapOutputEditor;
     ScopedPointer<TextEditor> bPMOutputEditor;
-    ScopedPointer<Label> taps;
+    ScopedPointer<Label> tapsLabel;
     ScopedPointer<Label> BPMFinder;
     ScopedPointer<Label> lyonsDenLabel;
     ScopedPointer<ToggleButton> preciseModeToggle;
     ScopedPointer<ToggleButton> beepToggle;
     ScopedPointer<ToggleButton> averageModeToggle;
-    ScopedPointer<Label> taps2;
+    ScopedPointer<Label> bpmLabel;
     ScopedPointer<TextButton> lockButton;
 
 
