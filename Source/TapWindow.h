@@ -92,7 +92,7 @@ private:
     ScopedPointer<ToggleButton> beepToggle;
     ScopedPointer<ToggleButton> averageModeToggle;
     ScopedPointer<Label> bpmLabel;
-    ScopedPointer<TextButton> lockButton;
+    ScopedPointer<ToggleButton> safeToggle;
 
 
     //==============================================================================

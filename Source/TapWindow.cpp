@@ -120,12 +120,10 @@ TapWindow::TapWindow ()
     bpmLabel->setColour (TextEditor::textColourId, Colours::black);
     bpmLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (lockButton = new TextButton ("lockButton"));
-    lockButton->setButtonText (TRANS("Lock"));
-    lockButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    lockButton->addListener (this);
-    lockButton->setColour (TextButton::buttonColourId, Colour (0xffff7a3d));
-    lockButton->setColour (TextButton::textColourOffId, Colours::white);
+    addAndMakeVisible (safeToggle = new ToggleButton ("safeToggle"));
+    safeToggle->setButtonText (TRANS("Safe"));
+    safeToggle->addListener (this);
+    safeToggle->setColour (ToggleButton::textColourId, Colours::white);
 
 
     //[UserPreSize]
@@ -140,10 +138,10 @@ TapWindow::TapWindow ()
     preciseModeToggle->setToggleState(false, dontSendNotification);
     beepToggle->setToggleState(false, dontSendNotification);
     averageModeToggle->setToggleState(true, dontSendNotification);
+    safeToggle->setToggleState(false, dontSendNotification);
 
     // Set buttons to work on downclick, not "upclick"
     tapButton->setTriggeredOnMouseDown(true);
-    lockButton->setTriggeredOnMouseDown(true);
 
     // Set Font object up
     fontForEditors.setSizeAndStyle(41, bold, 1, 0);
@@ -155,10 +153,6 @@ TapWindow::TapWindow ()
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
-
-    // Disable resetButton and averageModeToggle (because hitting this triggers a reset)
-    resetButton->setEnabled(false);
-    averageModeToggle->setEnabled(false);
 
     //[/Constructor]
 }
@@ -179,7 +173,7 @@ TapWindow::~TapWindow()
     beepToggle = nullptr;
     averageModeToggle = nullptr;
     bpmLabel = nullptr;
-    lockButton = nullptr;
+    safeToggle = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -204,17 +198,17 @@ void TapWindow::resized()
     //[/UserPreResize]
 
     tapButton->setBounds (0, 268, 320, 250);
-    resetButton->setBounds (50, 518, 270, 50);
+    resetButton->setBounds (0, 518, 320, 50);
     tapOutputEditor->setBounds (130, 105, 190, 55);
     bPMOutputEditor->setBounds (130, 171, 190, 55);
     tapsLabel->setBounds (0, 103, 130, 50);
     BPMFinder->setBounds (0, 0, 320, 56);
     lyonsDenLabel->setBounds (0, 47, 320, 47);
-    preciseModeToggle->setBounds (13, 240, 72, 24);
-    beepToggle->setBounds (254, 240, 53, 24);
-    averageModeToggle->setBounds (126, 240, 72, 24);
+    preciseModeToggle->setBounds (15, 240, 72, 24);
+    beepToggle->setBounds (188, 240, 53, 24);
+    averageModeToggle->setBounds (99, 240, 72, 24);
     bpmLabel->setBounds (0, 169, 130, 50);
-    lockButton->setBounds (0, 518, 50, 50);
+    safeToggle->setBounds (255, 240, 56, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -250,9 +244,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
             bPMOutputEditor->setText((String) bpmRounded);
         }
 
-        resetButton->setEnabled(false);
-        averageModeToggle->setEnabled(false);
-
         //[/UserButtonCode_tapButton]
     }
     else if (buttonThatWasClicked == resetButton)
@@ -282,14 +273,23 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
         //[/UserButtonCode_averageModeToggle]
     }
-    else if (buttonThatWasClicked == lockButton)
+    else if (buttonThatWasClicked == safeToggle)
     {
-        //[UserButtonCode_lockButton] -- add your button handler code here..
+        //[UserButtonCode_safeToggle] -- add your button handler code here..
 
-        resetButton->setEnabled(true);
-        averageModeToggle->setEnabled(true);
-
-        //[/UserButtonCode_lockButton]
+        if(safeToggle->getToggleState())
+        {
+            resetButton->setEnabled(false);
+            averageModeToggle->setEnabled(false);
+        }
+        
+        else
+        {
+            averageModeToggle->setEnabled(true);
+            resetButton->setEnabled(true);
+        }
+        
+        //[/UserButtonCode_safeToggle]
     }
 
     //[UserbuttonClicked_Post]
@@ -425,7 +425,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
-              virtualName="" explicitFocusOrder="0" pos="50 518 270 50" bgColOff="fffc4141"
+              virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="fffc4141"
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
@@ -454,15 +454,15 @@ BEGIN_JUCER_METADATA
          fontname="Savoye LET" fontsize="34.700000000000002842" bold="0"
          italic="0" justification="36"/>
   <TOGGLEBUTTON name="preciseModeToggle" id="876f27a25960a084" memberName="preciseModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="13 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="15 240 72 24" txtcol="ffffffff"
                 buttonText="Precise" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="beepToggle" id="3297335df774edc0" memberName="beepToggle"
-                virtualName="" explicitFocusOrder="0" pos="254 240 53 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="188 240 53 24" txtcol="ffffffff"
                 buttonText="Beep" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <TOGGLEBUTTON name="averageModeToggle" id="540e24a23ba6e447" memberName="averageModeToggle"
-                virtualName="" explicitFocusOrder="0" pos="126 240 72 24" txtcol="ffffffff"
+                virtualName="" explicitFocusOrder="0" pos="99 240 72 24" txtcol="ffffffff"
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <LABEL name="taps" id="51ca7c70af01bc76" memberName="bpmLabel" virtualName=""
@@ -470,10 +470,10 @@ BEGIN_JUCER_METADATA
          edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
-  <TEXTBUTTON name="lockButton" id="888d4ba6b368a77a" memberName="lockButton"
-              virtualName="" explicitFocusOrder="0" pos="0 518 50 50" bgColOff="ffff7a3d"
-              textCol="ffffffff" buttonText="Lock" connectedEdges="3" needsCallback="1"
-              radioGroupId="0"/>
+  <TOGGLEBUTTON name="safeToggle" id="4362a040c30aaf32" memberName="safeToggle"
+                virtualName="" explicitFocusOrder="0" pos="255 240 56 24" txtcol="ffffffff"
+                buttonText="Safe" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
