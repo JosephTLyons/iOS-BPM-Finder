@@ -50,6 +50,7 @@ public:
     void enterAverageMode();
     void enterNonAverageMode();
     void getTimeElapsedInMinutes(const Time &juceTimeObject);
+    void resetAllFields();
 
     //[/UserMethods]
 

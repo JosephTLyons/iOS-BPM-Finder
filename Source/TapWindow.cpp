@@ -257,14 +257,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_resetButton] -- add your button handler code here..
 
-        // reset all fields
-        bpmObject.setIntTapCount(0);
-        bpmObject.setStartingTime(0);
-        bpmObject.setEndingTime(0);
-
-        // set both fields back to 0
-        tapOutputEditor->setText((String) 0);
-        bPMOutputEditor->setText((String) 0);
+        resetAllFields();
 
         //[/UserButtonCode_resetButton]
     }
@@ -282,8 +275,8 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_averageModeToggle] -- add your button handler code here..
 
-        // Triggers reset when switching modes to reset internal values
-        resetButton->triggerClick();
+        // Triggers reset when switching modes to reset internal values, must turn off first
+        resetAllFields();
 
         //[/UserButtonCode_averageModeToggle]
     }
@@ -299,8 +292,6 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
 }
-
-
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
@@ -394,6 +385,18 @@ int TapWindow::roundFloat(const float &floatNumber)
     }
 
     return roundedNumber;
+}
+
+void TapWindow::resetAllFields()
+{
+    // reset all fields
+    bpmObject.setIntTapCount(0);
+    bpmObject.setStartingTime(0);
+    bpmObject.setEndingTime(0);
+    
+    // set both fields back to 0
+    tapOutputEditor->setText((String) 0);
+    bPMOutputEditor->setText((String) 0);
 }
 
 //[/MiscUserCode]
