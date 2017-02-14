@@ -433,7 +433,7 @@ BEGIN_JUCER_METADATA
                  fixedSize="1" initialWidth="320" initialHeight="568">
   <BACKGROUND backgroundColour="ff3e3333"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
-              virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff3edca7"
+              virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="resetButton" id="88dc555f2403c8fc" memberName="resetButton"
               virtualName="" explicitFocusOrder="0" pos="0 518 320 50" bgColOff="fff52a2a"
