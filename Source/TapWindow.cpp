@@ -53,7 +53,7 @@ TapWindow::TapWindow ()
     tapOutputEditor->setCaretVisible (false);
     tapOutputEditor->setPopupMenuEnabled (true);
     tapOutputEditor->setColour (TextEditor::textColourId, Colours::white);
-    tapOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff4e4242));
+    tapOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff3e3333));
     tapOutputEditor->setText (String());
 
     addAndMakeVisible (bPMOutputEditor = new TextEditor ("new text editor"));
@@ -64,7 +64,7 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setCaretVisible (false);
     bPMOutputEditor->setPopupMenuEnabled (true);
     bPMOutputEditor->setColour (TextEditor::textColourId, Colours::white);
-    bPMOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff4e4242));
+    bPMOutputEditor->setColour (TextEditor::backgroundColourId, Colour (0xff3e3333));
     bPMOutputEditor->setText (String());
 
     addAndMakeVisible (tapsLabel = new Label ("tapsLabel",
@@ -196,7 +196,7 @@ void TapWindow::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colour (0xff4e4242));
+    g.fillAll (Colour (0xff3e3333));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -209,15 +209,15 @@ void TapWindow::resized()
 
     tapButton->setBounds (0, 268, 320, 250);
     resetButton->setBounds (0, 518, 320, 50);
-    tapOutputEditor->setBounds (130, 105, 190, 55);
-    bPMOutputEditor->setBounds (130, 171, 190, 55);
-    tapsLabel->setBounds (0, 103, 130, 50);
-    BPMFinder->setBounds (0, 0, 320, 56);
-    lyonsDenLabel->setBounds (0, 47, 320, 47);
+    tapOutputEditor->setBounds (130, 114, 190, 55);
+    bPMOutputEditor->setBounds (130, 180, 190, 55);
+    tapsLabel->setBounds (0, 112, 130, 50);
+    BPMFinder->setBounds (0, 17, 320, 56);
+    lyonsDenLabel->setBounds (0, 71, 320, 47);
     preciseModeToggle->setBounds (60, 240, 67, 24);
     beepToggle->setBounds (207, 240, 53, 24);
     averageModeToggle->setBounds (130, 240, 74, 24);
-    bpmLabel->setBounds (0, 169, 130, 50);
+    bpmLabel->setBounds (0, 178, 130, 50);
     safeToggle->setBounds (264, 240, 50, 24);
     modesLabel->setBounds (5, 240, 54, 24);
     //[UserResized] Add your own custom resize handling here..
@@ -431,7 +431,7 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="5" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="320" initialHeight="568">
-  <BACKGROUND backgroundColour="ff4e4242"/>
+  <BACKGROUND backgroundColour="ff3e3333"/>
   <TEXTBUTTON name="tapButton" id="ca627b359bc64f50" memberName="tapButton"
               virtualName="" explicitFocusOrder="0" pos="0 268 320 250" bgColOff="ff53ffc5"
               buttonText="Tap" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
@@ -440,26 +440,26 @@ BEGIN_JUCER_METADATA
               textCol="ffffffff" buttonText="Reset" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="f94a8be5ddeb7596" memberName="tapOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="130 105 190 55" textcol="ffffffff"
-              bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
+              virtualName="" explicitFocusOrder="0" pos="130 114 190 55" textcol="ffffffff"
+              bkgcol="ff3e3333" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="6c6e0ab145fad75" memberName="bPMOutputEditor"
-              virtualName="" explicitFocusOrder="0" pos="130 171 190 55" textcol="ffffffff"
-              bkgcol="ff4e4242" initialText="" multiline="0" retKeyStartsLine="0"
+              virtualName="" explicitFocusOrder="0" pos="130 180 190 55" textcol="ffffffff"
+              bkgcol="ff3e3333" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <LABEL name="tapsLabel" id="6bb71dd7450d482a" memberName="tapsLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 103 130 50" textCol="ffffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 112 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="TAPS:&#10;" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
   <LABEL name="BPM Finder" id="2556d6d714a02054" memberName="BPMFinder"
-         virtualName="" explicitFocusOrder="0" pos="0 0 320 56" bkgCol="ffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 17 320 56" bkgCol="ffffff"
          textCol="ffffffff" edTextCol="ff000000" edBkgCol="0" labelText="BPM Finder"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Baskerville" fontsize="65.900000000000005684" bold="0"
          italic="0" justification="36"/>
   <LABEL name="Joseph Lyons" id="124d3b3268108be4" memberName="lyonsDenLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 47 320 47" bkgCol="ffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 71 320 47" bkgCol="ffffff"
          textCol="ffd8d8d8" edTextCol="ff000000" edBkgCol="0" labelText="The Lyons' Den Media"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Savoye LET" fontsize="34.700000000000002842" bold="0"
@@ -477,7 +477,7 @@ BEGIN_JUCER_METADATA
                 buttonText="Average" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
   <LABEL name="taps" id="51ca7c70af01bc76" memberName="bpmLabel" virtualName=""
-         explicitFocusOrder="0" pos="0 169 130 50" textCol="ffffffff"
+         explicitFocusOrder="0" pos="0 178 130 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Baskerville"
          fontsize="48" bold="0" italic="0" justification="34"/>
