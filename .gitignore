@@ -1,7 +1,6 @@
-Builds/
+/Builds
 
-JuceLibraryCode
+/JuceLibraryCode
 
 Builds/iOS/BPM Finder.xcodeproj/project.xcworkspace/xcuserdata/josephlyons.xcuserdatad/UserInterfaceState.xcuserstate
 
-Builds/iOS/build/Debug/BPM Finder.app/BPM Finder
