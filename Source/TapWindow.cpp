@@ -162,6 +162,8 @@ TapWindow::TapWindow ()
     // Set to zero for when app opens
     tapOutputEditor->setText((String) 0);
     bPMOutputEditor->setText((String) 0);
+    
+    tapButton->setLookAndFeel(&myCustomTapButtonLookAndFeel);
 
     //[/Constructor]
 }
