@@ -1,6 +1,3 @@
 /Builds/*
-
-/JuceLibraryCode
-
-Builds/iOS/BPM Finder.xcodeproj/project.xcworkspace/xcuserdata/josephlyons.xcuserdatad/UserInterfaceState.xcuserstate
-
+/JuceLibraryCode/*
+/Appicons/*
