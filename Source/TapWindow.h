@@ -23,6 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "BPM.hpp"
 #include "MyCustomTapButtonLookAndFeel.hpp"
+#include "MyCustomResetButtonLookAndFeel.hpp"
 #include "../JuceLibraryCode/JuceHeader.h"
 //[/Headers]
 
@@ -80,6 +81,8 @@ private:
     int bpmRounded    = 0;
     
     MyCustomTapButtonLookAndFeel myCustomTapButtonLookAndFeel;
+    MyCustomResetButtonLookAndFeel myCustomResetButtonLookAndFeel;
+    
     
     //[/UserVariables]
 

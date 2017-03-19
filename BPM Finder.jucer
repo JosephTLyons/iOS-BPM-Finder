@@ -142,6 +142,10 @@
             resource="0" file="Source/MyCustomTapButtonLookAndFeel.hpp"/>
       <FILE id="BTaORB" name="MyCustomTapButtonLookAndFeel.cpp" compile="1"
             resource="0" file="Source/MyCustomTapButtonLookAndFeel.cpp"/>
+      <FILE id="Ixp72L" name="MyCustomResetButtonLookAndFeel.hpp" compile="0"
+            resource="0" file="Source/MyCustomResetButtonLookAndFeel.hpp"/>
+      <FILE id="YCBBN3" name="MyCustomResetButtonLookAndFeel.cpp" compile="1"
+            resource="0" file="Source/MyCustomResetButtonLookAndFeel.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

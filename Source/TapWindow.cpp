@@ -164,6 +164,7 @@ TapWindow::TapWindow ()
     bPMOutputEditor->setText((String) 0);
     
     tapButton->setLookAndFeel(&myCustomTapButtonLookAndFeel);
+    resetButton->setLookAndFeel(&myCustomResetButtonLookAndFeel);
 
     //[/Constructor]
 }
