@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="tkxAXT" name="BPM Finder" projectType="guiapp" version="1.0.0"
+<JUCERPROJECT id="tkxAXT" name="BPM Finder" projectType="guiapp" version="0.5.0"
               bundleIdentifier="com.yourcompany.BPMFinder" includeBinaryInAppConfig="1"
-              jucerVersion="4.3.1">
+              jucerVersion="4.3.1" companyName="" companyEmail="JosephTLyons@gmail.com">
   <MAINGROUP id="CLNhQs" name="BPM Finder">
     <GROUP id="{EC5D05A8-9499-C1E1-621C-BE8E70975ED3}" name="AppIcons">
       <GROUP id="{6393DFAD-6F23-9269-6C16-DF5946292EAD}" name="BPM Finder AppIcon">
@@ -149,33 +149,18 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BPM Finder"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BPM Finder"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_graphics" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../Libraries/JUCE/modules"/>
-      </MODULEPATHS>
-    </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="portraitlandscape">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BPM Finder"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BPM Finder"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_graphics" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Libraries/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../../Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_core" path="../../../Libraries/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>

@@ -49,8 +49,8 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
 
     int roundFloat(const float &floatNumber);
-    void AverageMode();
-    void NonAverageMode();
+    void averageMode();
+    void nonAverageMode();
     void getTimeElapsedInMinutes(const Time &juceTimeObject);
     void resetAllFields();
 

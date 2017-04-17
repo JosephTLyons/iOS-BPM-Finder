@@ -35,8 +35,8 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "BPM Finder";
-    const char* const  versionString  = "1.0.0";
-    const int          versionNumber  = 0x10000;
+    const char* const  versionString  = "0.5.0";
+    const int          versionNumber  = 0x500;
 }
 #endif
 

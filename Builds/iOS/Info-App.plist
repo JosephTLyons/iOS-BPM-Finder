@@ -13,11 +13,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>0.5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>0.5.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHighResolutionCapable</key>
@@ -27,9 +27,9 @@
 	<key>UIBackgroundModes</key>
 	<array/>
 	<key>UIRequiresFullScreen</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -37,6 +37,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

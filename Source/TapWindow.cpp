@@ -238,12 +238,12 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
         if(averageModeToggle->getToggleState())
         {
-            AverageMode();
+            averageMode();
         }
 
         else
         {
-            NonAverageMode();
+            nonAverageMode();
         }
 
         // Display precise mode
@@ -314,7 +314,7 @@ void TapWindow::buttonClicked (Button* buttonThatWasClicked)
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TapWindow::AverageMode()
+void TapWindow::averageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
 
@@ -346,7 +346,7 @@ void TapWindow::AverageMode()
     bpmRounded = roundFloat(bpmPrecise);
 }
 
-void TapWindow::NonAverageMode()
+void TapWindow::nonAverageMode()
 {
     Time juceTimeObject(Time::getCurrentTime());
 
