@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.1
+  Created with Projucer version: 5.2.0
 
   ------------------------------------------------------------------------------
 
@@ -17,8 +17,7 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_HEADER_F309236315CAB33E__
-#define __JUCE_HEADER_F309236315CAB33E__
+#pragma once
 
 //[Headers]     -- You can add your own extra header files here --
 #include "BPM.hpp"
@@ -38,7 +37,7 @@
                                                                     //[/Comments]
 */
 class TapWindow  : public Component,
-                   public ButtonListener
+                   public Button::Listener
 {
 public:
     //==============================================================================
@@ -53,6 +52,7 @@ public:
     void nonAverageMode();
     void getTimeElapsedInMinutes(const Time &juceTimeObject);
     void resetAllFields();
+    void buttonStateChange (Button* b);
 
     //[/UserMethods]
 
@@ -79,11 +79,10 @@ private:
 
     double bpmPrecise = 0;
     int bpmRounded    = 0;
-    
+
     MyCustomTapButtonLookAndFeel myCustomTapButtonLookAndFeel;
     MyCustomResetButtonLookAndFeel myCustomResetButtonLookAndFeel;
-    
-    
+
     //[/UserVariables]
 
     //==============================================================================
@@ -100,6 +99,7 @@ private:
     ScopedPointer<Label> bpmLabel;
     ScopedPointer<ToggleButton> safeToggle;
     ScopedPointer<Label> modesLabel;
+    ScopedPointer<TextButton> lockButton;
 
 
     //==============================================================================
@@ -108,5 +108,3 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
-
-#endif   // __JUCE_HEADER_F309236315CAB33E__
